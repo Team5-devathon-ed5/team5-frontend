@@ -1,22 +1,21 @@
-<section class="user-profile-contain">
+<section class="user-profile-container">
   <article class="title-profile">
-    <h2>Información</h2>
+    <h2>Mi Información</h2>
     <p>
       En esta página solo puede editar la información de su perfil de usuario.
     </p>
   </article>
   <hr />
   <article class="body-profile">
-    <form action="">
-      <fieldset>
-        <h3>Tipo de usuario</h3>
-        <p>Usuario privado</p>
+    <form class="form-profile">
+      <fieldset class="title-form">
+        <h3>Tipo de usuario: <span>Usuario privado</span></h3>
       </fieldset>
-      <article>
-        <fieldset>
+      <article class="body-form section-1">
+        <fieldset class="check-container">
           <p>¿Quieres ser arrendador?</p>
           <!-- [checked]="false" [disabled]="false" -->
-          <mat-slide-toggle> Convertirme en arrendador </mat-slide-toggle>
+          <mat-slide-toggle>&nbsp; Convertirme en arrendador </mat-slide-toggle>
         </fieldset>
         <mat-form-field>
           <mat-label>Correo electrónico</mat-label>
@@ -38,7 +37,7 @@
         </mat-form-field>
       </article>
 
-      <article>
+      <article class="body-form section-2">
         <mat-form-field>
           <mat-label>País</mat-label>
           <mat-select placeholder="Elige un país" required>
@@ -69,8 +68,8 @@
           <mat-error>{{ getErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Telephone</mat-label>
-          <span matPrefix>+51 &nbsp;</span>
+          <mat-label>Teléfono</mat-label>
+          <span matPrefix>&nbsp; +51 &nbsp;</span>
           <input type="tel" matInput placeholder="999-999-999" />
           <!-- *ngIf="phone.invalid" -->
           <mat-error>{{ getErrorMessage() }}</mat-error>
@@ -78,13 +77,18 @@
         <mat-checkbox>
           El número de teléfono puede mostrarse públicamente
         </mat-checkbox>
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="last-field">
           <mat-label>Sobre mi</mat-label>
-          <textarea matInput placeholder="Información sobre mi"></textarea>
+          <textarea
+            matInput
+            matTextareaAutosize
+            rows="5"
+            maxLength="2000"
+            placeholder="Información sobre mi"></textarea>
           <mat-hint> Quedan 2000 caracteres (max. 2000) </mat-hint>
         </mat-form-field>
         <hr />
-        <fieldset>
+        <fieldset class="buttons-form">
           <button type="submit" mat-raised-button color="primary">
             Actualizar información
           </button>

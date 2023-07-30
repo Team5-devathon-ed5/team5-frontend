@@ -1,1 +1,96 @@
-<p>profile works!</p>
+<section class="user-profile-contain">
+  <article class="title-profile">
+    <h2>Información</h2>
+    <p>
+      En esta página solo puede editar la información de su perfil de usuario.
+    </p>
+  </article>
+  <hr />
+  <article class="body-profile">
+    <form action="">
+      <fieldset>
+        <h3>Tipo de usuario</h3>
+        <p>Usuario privado</p>
+      </fieldset>
+      <article>
+        <fieldset>
+          <p>¿Quieres ser arrendador?</p>
+          <!-- [checked]="false" [disabled]="false" -->
+          <mat-slide-toggle> Convertirme en arrendador </mat-slide-toggle>
+        </fieldset>
+        <mat-form-field>
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput placeholder="example@example.com" required />
+          <!-- *ngIf="email.invalid" -->
+          <mat-error>{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre" required />
+          <!-- *ngIf="password.invalid" -->
+          <mat-error>{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Apellidos</mat-label>
+          <input matInput placeholder="Apellidos" required />
+          <!-- *ngIf="password.invalid" -->
+          <mat-error>{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </article>
+
+      <article>
+        <mat-form-field>
+          <mat-label>País</mat-label>
+          <mat-select placeholder="Elige un país" required>
+            <mat-option>--</mat-option>
+            <!-- *ngFor="let state of states" [value]="state" -->
+            <mat-option>Valores varios</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Dirección</mat-label>
+          <input matInput />
+          <!-- *ngIf="adress.invalid" -->
+          <mat-error>{{ getErrorMessage() }}</mat-error>
+          <mat-hint>
+            La dirección no se muestra en la página de perfil público
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Ciudad</mat-label>
+          <input matInput />
+          <!-- *ngIf="city.invalid" -->
+          <mat-error>{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Código postal</mat-label>
+          <input matInput #postalCode placeholder="Ej. 94105" />
+          <!-- *ngIf="postalCode.invalid" -->
+          <mat-error>{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Telephone</mat-label>
+          <span matPrefix>+51 &nbsp;</span>
+          <input type="tel" matInput placeholder="999-999-999" />
+          <!-- *ngIf="phone.invalid" -->
+          <mat-error>{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+        <mat-checkbox>
+          El número de teléfono puede mostrarse públicamente
+        </mat-checkbox>
+        <mat-form-field class="example-full-width">
+          <mat-label>Sobre mi</mat-label>
+          <textarea matInput placeholder="Información sobre mi"></textarea>
+          <mat-hint> Quedan 2000 caracteres (max. 2000) </mat-hint>
+        </mat-form-field>
+        <hr />
+        <fieldset>
+          <button type="submit" mat-raised-button color="primary">
+            Actualizar información
+          </button>
+          <button mat-button color="warn">Cancelar cambios</button>
+        </fieldset>
+      </article>
+    </form>
+  </article>
+</section>

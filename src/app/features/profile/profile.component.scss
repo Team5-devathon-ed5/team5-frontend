@@ -32,6 +32,7 @@
 
 .title-form {
   padding: 2rem 0 0 0;
+
   h3 {
     font-size: 1.5em;
     color: var(--color-heading);
@@ -49,6 +50,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+}
+
+form.form-profile {
+  width: 40%;
+  max-width: 800px;
 }
 
 .check-container {
@@ -84,9 +90,4 @@ fieldset {
 
 .section-2 .buttons-form button[mat-button] {
   text-decoration: underline;
-}
-
-form.form-profile {
-  width: 40%;
-  max-width: 800px;
 }

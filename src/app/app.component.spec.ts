@@ -26,7 +26,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain(
+    expect(compiled.querySelector('span.title')?.textContent).toContain(
       'abled-frontend app is running!'
     );
   });

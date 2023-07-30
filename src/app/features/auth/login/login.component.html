@@ -4,15 +4,17 @@
       class="login-content"
       (ngSubmit)="proceedlogin()"
       [formGroup]="loginForm">
-      <p class="title">Iniciar Sesión</p>
+      <h2 class="title">Iniciar Sesión</h2>
       <mat-form-field appearance="outline">
         <mat-label>Nombre de usuario</mat-label>
         <input formControlName="username" matInput type="text" />
-        <mat-error *ngIf="loginForm.controls['username'].hasError('required')"
-          >Nombre de usuario es obligatorio
-        </mat-error>
-        <mat-error *ngIf="loginForm.controls['username'].hasError('email')">
-          Coloca bien el Email
+        <mat-error>
+          <span *ngIf="loginForm.controls['username'].hasError('required')">
+            Nombre de usuario es obligatorio
+          </span>
+          <span *ngIf="loginForm.controls['username'].hasError('email')">
+            Coloca bien el Email
+          </span>
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">

@@ -1,13 +1,13 @@
-.register-body{
+.login-body{
   background:
   linear-gradient(
           to right,
           rgba(#84F461,0.7),
           rgba(#84F461,0.7)),
-      url("img-verde.jpg") center top;
+      url("../../../../assets/images/img-verde.jpg") center top;
       background-size:cover ;
 }
-.register-container {
+.login-container {
 
   background:#fff;
       background-size:cover ;
@@ -52,7 +52,7 @@
       cursor: pointer;
     }
   }
-  .register-content {
+  .login-content {
 
     width: 60%;
     display: flex;

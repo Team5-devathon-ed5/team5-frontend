@@ -1,0 +1,42 @@
+<div class="login-body">
+  <div class="login-container">
+    <form
+      class="login-content"
+      (ngSubmit)="proceedlogin()"
+      [formGroup]="loginForm">
+      <p class="title">Iniciar Sesión</p>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de usuario</mat-label>
+        <input formControlName="username" matInput type="text" />
+        <mat-error *ngIf="loginForm.controls['username'].hasError('required')"
+          >Nombre de usuario es obligatorio
+        </mat-error>
+        <mat-error *ngIf="loginForm.controls['username'].hasError('email')">
+          Coloca bien el Email
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input
+          formControlName="password"
+          matInput
+          [type]="hide ? 'password' : 'text'" />
+        <mat-icon (click)="hide = !hide" matSuffix>{{
+          hide ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+        <mat-error *ngIf="loginForm.controls['password'].hasError('required')"
+          >Contraseña es obligatorio
+        </mat-error>
+      </mat-form-field>
+      <p class="forgot-label">¿olvidaste tu contraseña?</p>
+      <p class="alternative">
+        ¿No tienes una cuenta?
+        <span routerLink="/registro" routerLinkActive="active">Registrate</span>
+      </p>
+      <button mat-raised-button color="primary">Iniciar Sesión</button>
+      <!-- <div class="or-line-divider">
+        <p>O</p>
+      </div> -->
+    </form>
+  </div>
+</div>

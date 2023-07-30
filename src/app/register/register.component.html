@@ -1,0 +1,62 @@
+<div class="register-body">
+  <div class="register-container">
+    <form
+      (ngSubmit)="proceedregister()"
+      [formGroup]="registerForm"
+      class="register-content">
+      <p class="title">Registro</p>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de usuario</mat-label>
+        <input formControlName="username" matInput type="text" />
+        <mat-error
+          *ngIf="registerForm.controls['username'].hasError('required')"
+          >Nombre de usuario es obligatorio
+        </mat-error>
+        <mat-error *ngIf="registerForm.controls['username'].hasError('email')">
+          Coloca bien el Email
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input
+          formControlName="password"
+          matInput
+          [type]="hide ? 'password' : 'text'" />
+        <mat-icon (click)="hide = !hide" matSuffix>{{
+          hide ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+        <mat-error
+          *ngIf="registerForm.controls['password'].hasError('required')"
+          >Contraseña es obligatorio
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input
+          formControlName="confirmPassword"
+          matInput
+          [type]="hideConfirmPassword ? 'password' : 'text'" />
+        <mat-icon
+          (click)="hideConfirmPassword = !hideConfirmPassword"
+          matSuffix>
+          {{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+        <mat-error
+          *ngIf="registerForm.controls['confirmPassword'].hasError('required')"
+          >confirmar contraseña es obligatorio
+        </mat-error>
+      </mat-form-field>
+      <p class="forgot-label">¿olvidaste tu contraseña?</p>
+      <p class="alternative">
+        ¿tienes cuenta?
+        <span routerLink="/login" routerLinkActive="active"
+          >Iniciar Sesión</span
+        >
+      </p>
+      <button mat-raised-button color="primary">Submit</button>
+      <!-- <div class="or-line-divider">
+        <p>O</p>
+      </div> -->
+    </form>
+  </div>
+</div>

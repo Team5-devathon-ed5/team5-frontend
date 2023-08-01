@@ -1,19 +1,23 @@
 <div class="register-body">
   <div class="register-container">
     <form
-      (ngSubmit)="proceedregister()"
+      (ngSubmit)="register()"
       [formGroup]="registerForm"
-      class="register-content">
-      <p class="title">Registro</p>
+      class="register-content"
+      appearance="outline">
+      <p class="title">Registrate!</p>
       <mat-form-field appearance="outline">
-        <mat-label>Nombre de usuario</mat-label>
+        <mat-label>Nombre de usuario </mat-label>
         <input formControlName="username" matInput type="text" />
-        <mat-error
-          *ngIf="registerForm.controls['username'].hasError('required')"
-          >Nombre de usuario es obligatorio
+        <mat-error *ngIf="checkValidation('username')">
+          {{ hasError('username', 'minlength') }}
         </mat-error>
-        <mat-error *ngIf="registerForm.controls['username'].hasError('email')">
-          Coloca bien el Email
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Dirección e-mail </mat-label>
+        <input formControlName="email" matInput type="text" />
+        <mat-error *ngIf="checkValidation('email')">
+          {{ hasError('email', 'email') }}
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -25,13 +29,12 @@
         <mat-icon (click)="hide = !hide" matSuffix>{{
           hide ? 'visibility_off' : 'visibility'
         }}</mat-icon>
-        <mat-error
-          *ngIf="registerForm.controls['password'].hasError('required')"
-          >Contraseña es obligatorio
+        <mat-error *ngIf="checkValidation('password')">
+          {{ hasError('password', 'requirements') }}
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Contraseña</mat-label>
+        <mat-label>Confirmar contraseña</mat-label>
         <input
           formControlName="confirmPassword"
           matInput
@@ -41,22 +44,25 @@
           matSuffix>
           {{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}
         </mat-icon>
+        <mat-error *ngIf="checkValidation('confirmPassword')">
+          {{ hasError('confirmPassword', 'requirements') }}
+        </mat-error>
         <mat-error
-          *ngIf="registerForm.controls['confirmPassword'].hasError('required')"
-          >confirmar contraseña es obligatorio
+          *ngIf="
+            checkValidation('confirmPassword') &&
+            f.hasError('passwordsNotMatching')
+          ">
+          Contraseñas no coinciden
         </mat-error>
       </mat-form-field>
       <p class="forgot-label">¿olvidaste tu contraseña?</p>
       <p class="alternative">
         ¿tienes cuenta?
-        <span routerLink="/login" routerLinkActive="active"
+        <span routerLink="/auth/login" routerLinkActive="active"
           >Iniciar Sesión</span
         >
       </p>
-      <button mat-raised-button color="primary">Submit</button>
-      <!-- <div class="or-line-divider">
-        <p>O</p>
-      </div> -->
+      <button mat-raised-button color="primary">Enviar</button>
     </form>
   </div>
 </div>

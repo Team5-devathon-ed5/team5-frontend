@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthRoutingModule } from './auth-routing.module';
+import { AngularMaterialModule } from '../../shared/modules/angular-material/angular-material.module';
+
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { AngularMaterialModule } from 'src/app/shared/modules/angular-material/angular-material.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { AuthComponent } from './auth.component';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, AuthComponent],
+  declarations: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    AngularMaterialModule,
+    FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    AuthRoutingModule,
+    AngularMaterialModule,
   ],
   exports: [RouterModule],
 })

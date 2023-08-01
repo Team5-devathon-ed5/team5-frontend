@@ -52,6 +52,19 @@
   gap: 0.5em;
 }
 
+table.phone-container {
+  width: 100%;
+  border-collapse: collapse;
+}
+tr {
+  td {
+    width: 20%;
+  }
+  td {
+    width: 80%;
+  }
+}
+
 form.form-profile {
   width: 40%;
   max-width: 800px;

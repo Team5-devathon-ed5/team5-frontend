@@ -1,3 +1,5 @@
+import { Role } from './role.enum';
+
 /*
  * Path: src\app\models\user.model.ts
  * Modelo para el registro y login de usuarios
@@ -11,13 +13,26 @@
  * @return User
  * @description
  */
-export interface User {
-  email: string;
+export interface Login {
+  email?: string;
+  username?: string;
   password: string;
+  role?: Role;
+}
+
+export interface UserRegister extends User {
+  password: string;
+}
+
+export interface User {
+  _id?: string;
+  role: Role;
+  email: string;
   name: string;
   lastName: string;
   country: string;
-  account_active: boolean;
+  account_active?: boolean;
+  username?: string;
 }
 
 /*
@@ -47,9 +62,9 @@ export interface UserProfile extends User {
   address?: string;
   postalCode?: string;
   phone?: {
-    code: string;
-    number: number;
-    share: boolean;
+    phoneCode: string;
+    phoneNumber: number;
+    sharePhone: boolean;
   };
   description?: string;
   image?: string;

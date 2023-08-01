@@ -1,13 +1,13 @@
 <section class="user-profile-container">
   <article class="title-profile">
-    <h2>Mi Información</h2>
+    <h2>Mi Perfil</h2>
     <p>
       En esta página solo puede editar la información de su perfil de usuario.
     </p>
   </article>
-  <hr />
+  <mat-divider></mat-divider>
   <article class="body-profile">
-    <form class="form-profile">
+    <form class="form-profile" [formGroup]="profileForm">
       <fieldset class="title-form">
         <h3>Tipo de usuario: <span>Usuario privado</span></h3>
       </fieldset>
@@ -15,81 +15,158 @@
         <fieldset class="check-container">
           <p>¿Quieres ser arrendador?</p>
           <!-- [checked]="false" [disabled]="false" -->
-          <mat-slide-toggle>&nbsp; Convertirme en arrendador </mat-slide-toggle>
+          <mat-slide-toggle formControlName="role">
+            &nbsp; Convertirme en arrendador
+          </mat-slide-toggle>
         </fieldset>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Correo electrónico</mat-label>
-          <input matInput placeholder="example@example.com" required />
+          <input
+            matInput
+            type="email"
+            placeholder="example@example.com"
+            formControlName="email"
+            required />
           <!-- *ngIf="email.invalid" -->
-          <mat-error>{{ getErrorMessage() }}</mat-error>
+          <mat-error *ngIf="getErrorMessage('email')">{{
+            hasError('email', 'email')
+          }}</mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Nombre</mat-label>
-          <input matInput placeholder="Nombre" required />
+          <input
+            matInput
+            type="text"
+            placeholder="Nombre"
+            required
+            formControlName="name" />
           <!-- *ngIf="password.invalid" -->
-          <mat-error>{{ getErrorMessage() }}</mat-error>
+          <mat-error *ngIf="getErrorMessage('name')">{{
+            hasError('name', 'name')
+          }}</mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Apellidos</mat-label>
-          <input matInput placeholder="Apellidos" required />
-          <!-- *ngIf="password.invalid" -->
-          <mat-error>{{ getErrorMessage() }}</mat-error>
+          <input
+            matInput
+            type="text"
+            placeholder="Apellidos"
+            required
+            formControlName="lastName" />
+          <mat-error *ngIf="getErrorMessage('lastName')">
+            {{ hasError('lastName', 'lastName') }}
+          </mat-error>
         </mat-form-field>
       </article>
 
       <article class="body-form section-2">
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>País</mat-label>
-          <mat-select placeholder="Elige un país" required>
+          <mat-select
+            placeholder="Elige un país"
+            required
+            formControlName="country">
             <mat-option>--</mat-option>
             <!-- *ngFor="let state of states" [value]="state" -->
-            <mat-option>Valores varios</mat-option>
+            <mat-option value="pais X">Valores varios</mat-option>
           </mat-select>
+          <mat-error *ngIf="getErrorMessage('country')">
+            {{ hasError('country', 'country') }}
+          </mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Dirección</mat-label>
-          <input matInput />
+          <input type="text" matInput formControlName="address" />
           <!-- *ngIf="adress.invalid" -->
-          <mat-error>{{ getErrorMessage() }}</mat-error>
+          <mat-error *ngIf="getErrorMessage('address')">{{
+            hasError('address', 'address')
+          }}</mat-error>
           <mat-hint>
             La dirección no se muestra en la página de perfil público
           </mat-hint>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Ciudad</mat-label>
-          <input matInput />
+          <input matInput formControlName="city" />
           <!-- *ngIf="city.invalid" -->
-          <mat-error>{{ getErrorMessage() }}</mat-error>
+          <mat-error *ngIf="getErrorMessage('city')">{{
+            hasError('city', 'city')
+          }}</mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Código postal</mat-label>
-          <input matInput #postalCode placeholder="Ej. 94105" />
+          <input
+            matInput
+            type="text"
+            #postalCode
+            placeholder="Ej. 94105"
+            formControlName="postalCode" />
           <!-- *ngIf="postalCode.invalid" -->
-          <mat-error>{{ getErrorMessage() }}</mat-error>
+          <mat-error *ngIf="getErrorMessage('postalCode')">{{
+            hasPatternError('postalCode')
+          }}</mat-error>
         </mat-form-field>
-        <mat-form-field>
-          <mat-label>Teléfono</mat-label>
-          <span matPrefix>&nbsp; +51 &nbsp;</span>
-          <input type="tel" matInput placeholder="999-999-999" />
-          <!-- *ngIf="phone.invalid" -->
-          <mat-error>{{ getErrorMessage() }}</mat-error>
-        </mat-form-field>
-        <mat-checkbox>
-          El número de teléfono puede mostrarse públicamente
-        </mat-checkbox>
-        <mat-form-field class="last-field">
+        <table class="phone-container" cellspacing="0" formGroupName="phone">
+          <tr>
+            <td class="code-container">
+              <mat-form-field appearance="outline">
+                <mat-label>Código</mat-label>
+                <mat-select formControlName="phoneCode" placeholder="+51">
+                  <mat-option>-----</mat-option>
+                  <mat-option value="+34">+34</mat-option>
+                  <mat-option value="+1">+1</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+            <td class="number-container">
+              <mat-form-field appearance="outline">
+                <mat-label>Teléfono</mat-label>
+                <input
+                  type="number"
+                  matInput
+                  placeholder="123456789"
+                  formControlName="phoneNumber" />
+                <!-- *ngIf="phone.invalid" -->
+                <mat-error *ngIf="getErrorMessage('phone.phoneNumber')">{{
+                  hasPatternError('phone.phoneNumber')
+                }}</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-checkbox formControlName="sharePhone">
+                El número de teléfono puede mostrarse públicamente
+              </mat-checkbox>
+            </td>
+          </tr>
+        </table>
+        <mat-form-field appearance="outline" class="last-field">
           <mat-label>Sobre mi</mat-label>
           <textarea
             matInput
             matTextareaAutosize
             rows="5"
             maxLength="2000"
-            placeholder="Información sobre mi"></textarea>
-          <mat-hint> Quedan 2000 caracteres (max. 2000) </mat-hint>
+            placeholder="Información sobre mi"
+            formControlName="description"></textarea>
+          <mat-hint>
+            Quedan
+            {{ 2000 - (profileForm.get('description')?.value || '').length }}
+            caracteres (max. 2000)
+          </mat-hint>
+          <mat-error *ngIf="getErrorMessage('description')">
+            {{ hasError('description', 'description') }}
+          </mat-error>
         </mat-form-field>
-        <hr />
+        <mat-divider></mat-divider>
         <fieldset class="buttons-form">
-          <button type="submit" mat-raised-button color="primary">
+          <button
+            color="primary"
+            type="submit"
+            mat-raised-button
+            [disabled]="profileForm.invalid || isUpdatingProfile"
+            (click)="ngSubmit()">
             Actualizar información
           </button>
           <button mat-button color="warn">Cancelar cambios</button>

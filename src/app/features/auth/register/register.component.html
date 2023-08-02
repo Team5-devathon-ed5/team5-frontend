@@ -1,0 +1,68 @@
+<div class="register-body">
+  <div class="register-container">
+    <form
+      (ngSubmit)="register()"
+      [formGroup]="registerForm"
+      class="register-content"
+      appearance="outline">
+      <p class="title">Registrate!</p>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de usuario </mat-label>
+        <input formControlName="username" matInput type="text" />
+        <mat-error *ngIf="checkData('username')">
+          {{ checkErrors('username', 'minlength') }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Dirección e-mail </mat-label>
+        <input formControlName="email" matInput type="text" />
+        <mat-error *ngIf="checkData('email')">
+          {{ checkErrors('email', 'email') }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input
+          formControlName="password"
+          matInput
+          [type]="hide ? 'password' : 'text'" />
+        <mat-icon (click)="hide = !hide" matSuffix>{{
+          hide ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+        <mat-error *ngIf="checkData('password')">
+          {{ checkErrors('password', 'requirements') }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Confirmar contraseña</mat-label>
+        <input
+          formControlName="confirmPassword"
+          matInput
+          [type]="hideConfirmPassword ? 'password' : 'text'" />
+        <mat-icon
+          (click)="hideConfirmPassword = !hideConfirmPassword"
+          matSuffix>
+          {{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+        <mat-error *ngIf="checkData('confirmPassword')">
+          {{ checkErrors('confirmPassword', 'requirements') }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            checkData('confirmPassword') && f.hasError('passwordsNotMatching')
+          ">
+          Contraseñas no coinciden
+        </mat-error>
+      </mat-form-field>
+      <p class="alternative">
+        ¿Tienes cuenta?
+        <span routerLink="/auth/login" routerLinkActive="active"
+          >Iniciar Sesión</span
+        >
+      </p>
+      <button [disabled]="f.invalid" mat-raised-button color="primary">
+        Enviar
+      </button>
+    </form>
+  </div>
+</div>

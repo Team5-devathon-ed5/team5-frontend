@@ -20,7 +20,7 @@ export class AuthService {
     const { username, password, email } = inputdata;
 
     return this.http
-      .post<Token>(`${this.apiUrl}able/register`, {
+      .post<Token>(`/api/able/register`, {
         username,
         password,
         email,

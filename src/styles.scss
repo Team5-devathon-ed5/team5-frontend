@@ -18,3 +18,9 @@ body {
   --color-heading: #101828;
   --color-paragraph: #1d2939;
 }
+
+mat-error {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.6rem;
+}

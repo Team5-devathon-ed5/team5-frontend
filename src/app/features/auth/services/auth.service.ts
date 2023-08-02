@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthRegister, Token } from '../models/auth.model';
-import { Subscription } from 'rxjs';
+import { AuthLogin, AuthRegister, Token } from '../models/auth.model';
+import { Observable, Subscription, catchError, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -43,36 +43,34 @@ export class AuthService {
       });
   }
 
-  // TODO: Clean this up
-  RegisterUser(inputdata: any) {
-    return this.http.post(this.apiUrl, inputdata);
+  login(authLogin: AuthLogin): Observable<Token> {
+    const { username, password } = authLogin;
+    return this.http
+      .post<Token>(`/api/able/login`, {
+        username,
+        password,
+      })
+      .pipe(
+        tap(data => {
+          if (!data) {
+            localStorage.removeItem('token');
+            this.router.navigate(['/auth/login']);
+          }
+          localStorage.setItem('token', data.jwTtoken);
+          this.router.navigate(['/']);
+        }),
+        catchError(error => {
+          if (error.status === 403) {
+            this._snackBar.open('Credenciales incorrectas', 'Cerrar', {
+              duration: 2000,
+            });
+          }
+          return throwError(() => error || 'Server error');
+        })
+      );
   }
-  GetUserbyCode(id: any) {
-    return this.http.get(this.apiUrl + '/' + id);
-  }
-  Getall() {
-    return this.http.get(this.apiUrl);
-  }
-  updateuser(id: any, inputdata: any) {
-    return this.http.put(this.apiUrl + '/' + id, inputdata);
-  }
-  getuserrole() {
-    return this.http.get('http://localhost:3000/role');
-  }
-  isloggedin() {
-    return sessionStorage.getItem('username') != null;
-  }
-  getrole() {
-    return sessionStorage.getItem('role') != null
-      ? sessionStorage.getItem('role')?.toString()
-      : '';
-  }
-  GetAllCustomer() {
-    return this.http.get('http://localhost:3000/customer');
-  }
-  Getaccessbyrole(role: any, menu: any) {
-    return this.http.get(
-      'http://localhost:3000/roleaccess?role=' + role + '&menu=' + menu
-    );
+
+  setTokenId(res: Token) {
+    localStorage.setItem('userData', JSON.stringify(res));
   }
 }

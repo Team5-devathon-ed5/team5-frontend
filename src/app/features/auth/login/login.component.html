@@ -1,20 +1,12 @@
 <div class="login-body">
   <div class="login-container">
-    <form
-      class="login-content"
-      (ngSubmit)="proceedlogin()"
-      [formGroup]="loginForm">
+    <form class="login-content" (ngSubmit)="login()" [formGroup]="loginForm">
       <h2 class="title">Iniciar Sesión</h2>
       <mat-form-field appearance="outline">
         <mat-label>Nombre de usuario</mat-label>
         <input formControlName="username" matInput type="text" />
-        <mat-error>
-          <span *ngIf="loginForm.controls['username'].hasError('required')">
-            Nombre de usuario es obligatorio
-          </span>
-          <span *ngIf="loginForm.controls['username'].hasError('email')">
-            Coloca bien el Email
-          </span>
+        <mat-error *ngIf="checkData('username')">
+          {{ checkErrors('username', 'minlength') }}
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -26,21 +18,20 @@
         <mat-icon (click)="hide = !hide" matSuffix>{{
           hide ? 'visibility_off' : 'visibility'
         }}</mat-icon>
-        <mat-error *ngIf="loginForm.controls['password'].hasError('required')"
-          >Contraseña es obligatorio
+        <mat-error *ngIf="checkData('password')">
+          {{ checkErrors('password', 'requirements') }}
         </mat-error>
       </mat-form-field>
-      <p class="forgot-label">¿olvidaste tu contraseña?</p>
+      <p class="forgot-label">¿Olvidaste tu contraseña?</p>
       <p class="alternative">
         ¿No tienes una cuenta?
         <span routerLink="/auth/sign-up" routerLinkActive="active"
-          >Iniciar Sesión</span
+          >Registrate!</span
         >
       </p>
-      <button mat-raised-button color="primary">Iniciar Sesión</button>
-      <!-- <div class="or-line-divider">
-        <p>O</p>
-      </div> -->
+      <button [disabled]="f.invalid" mat-raised-button color="primary">
+        Enviar
+      </button>
     </form>
   </div>
 </div>

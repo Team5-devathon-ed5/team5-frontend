@@ -9,15 +9,15 @@
       <mat-form-field appearance="outline">
         <mat-label>Nombre de usuario </mat-label>
         <input formControlName="username" matInput type="text" />
-        <mat-error *ngIf="checkValidation('username')">
-          {{ hasError('username', 'minlength') }}
+        <mat-error *ngIf="checkData('username')">
+          {{ checkErrors('username', 'minlength') }}
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Dirección e-mail </mat-label>
         <input formControlName="email" matInput type="text" />
-        <mat-error *ngIf="checkValidation('email')">
-          {{ hasError('email', 'email') }}
+        <mat-error *ngIf="checkData('email')">
+          {{ checkErrors('email', 'email') }}
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -29,8 +29,8 @@
         <mat-icon (click)="hide = !hide" matSuffix>{{
           hide ? 'visibility_off' : 'visibility'
         }}</mat-icon>
-        <mat-error *ngIf="checkValidation('password')">
-          {{ hasError('password', 'requirements') }}
+        <mat-error *ngIf="checkData('password')">
+          {{ checkErrors('password', 'requirements') }}
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -44,25 +44,25 @@
           matSuffix>
           {{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}
         </mat-icon>
-        <mat-error *ngIf="checkValidation('confirmPassword')">
-          {{ hasError('confirmPassword', 'requirements') }}
+        <mat-error *ngIf="checkData('confirmPassword')">
+          {{ checkErrors('confirmPassword', 'requirements') }}
         </mat-error>
         <mat-error
           *ngIf="
-            checkValidation('confirmPassword') &&
-            f.hasError('passwordsNotMatching')
+            checkData('confirmPassword') && f.hasError('passwordsNotMatching')
           ">
           Contraseñas no coinciden
         </mat-error>
       </mat-form-field>
-      <p class="forgot-label">¿olvidaste tu contraseña?</p>
       <p class="alternative">
-        ¿tienes cuenta?
+        ¿Tienes cuenta?
         <span routerLink="/auth/login" routerLinkActive="active"
           >Iniciar Sesión</span
         >
       </p>
-      <button mat-raised-button color="primary">Enviar</button>
+      <button [disabled]="f.invalid" mat-raised-button color="primary">
+        Enviar
+      </button>
     </form>
   </div>
 </div>

@@ -1,3 +1,4 @@
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -44,6 +45,7 @@ const materialModules = [
   MatExpansionModule,
   MatIconModule,
   MatInputModule,
+  MatSlideToggleModule,
   MatListModule,
   MatMenuModule,
   MatProgressSpinnerModule,

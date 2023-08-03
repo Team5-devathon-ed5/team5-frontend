@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularMaterialModule } from './shared/modules/angular-material/angular-material.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { AngularMaterialModule } from './shared/modules/angular-material/angular
     HttpClientModule,
     AppRoutingModule,
     AngularMaterialModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

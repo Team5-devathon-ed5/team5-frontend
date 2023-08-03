@@ -27,6 +27,7 @@ footer {
       .content {
         margin: 20px 0 0 0;
         position: relative;
+        font-size: 1rem;
       }
       .content:before{
         position: absolute;
@@ -54,6 +55,19 @@ footer {
 
 
     }
+    .center{
+      font-size: 1.1rem;
+      font-weight: 500;
+      padding-left: 10px;
+      .link{
+        margin-top:20px ;
+        .text{
+
+           cursor: pointer;
+         }
+      }
+
+    }
     .right {
      width: 100%;
 
@@ -69,7 +83,7 @@ footer {
           color: #656565;
          }
          textarea,input {
-
+          resize:none;
           color: #fff;
           width: 100%;
           font-size: 1.01rem;

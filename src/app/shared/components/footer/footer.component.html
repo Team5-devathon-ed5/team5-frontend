@@ -11,6 +11,26 @@
         </p>
       </div>
     </div>
+    <div class="center box">
+      <h2>Links de la página</h2>
+      <div class="content">
+        <div class="link">
+          <span routerLinkActive="active" routerLink="/" class="text"
+            >Página Principal</span
+          >
+        </div>
+        <div class="link">
+          <span routerLinkActive="active" class="text" routerLink="/auth/login"
+            >Iniciar Sesión</span
+          >
+        </div>
+        <div class="link">
+          <span routerLinkActive="active" class="text" routerLink="/account"
+            >Cuenta de usuario</span
+          >
+        </div>
+      </div>
+    </div>
     <div class="right box">
       <h2>Contactanos</h2>
       <div class="content">
@@ -21,7 +41,7 @@
           </div>
           <div class="msg">
             <div class="text">Mensaje</div>
-            <textarea required rows="2" cols="25"></textarea>
+            <textarea rows="5" cols="40" required></textarea>
           </div>
           <div class="btn">
             <button mat-raised-button>Enviar</button>

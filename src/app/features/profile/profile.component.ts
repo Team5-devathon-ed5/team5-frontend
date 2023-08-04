@@ -1,29 +1,22 @@
 import { ProfileService } from './profile.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { UserProfile } from 'src/app/models/user.model';
 import { Role } from 'src/app/models/role.enum';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
-export enum MessageErrors {
-  email = 'El email es requerido',
-  email_hasError_email = 'Email inválido',
-  name = 'El nombre es requerido',
-  lastName = 'El apellido es requerido',
-  country = 'El país es requerido',
-  phoneNumber_hasError_pattern = 'El teléfono debe tener entre 7 y 10 dígitos',
-  phoneCode_hasError_pattern = 'El código de país debe tener entre 1 y 4 dígitos',
-  postalCode_hasError_pattern = 'El código postal debe tener entre 5 y 6 dígitos',
-  description_hasError_maxLength = 'La descripción no puede tener más de 2000 caracteres',
-}
+import {
+  checkValidation,
+  hasError,
+  hasPatternError,
+} from 'src/app/shared/helpers/forms.helper';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   private snackBar = inject(MatSnackBar);
   private router = inject(Router);
   private profileService = inject(ProfileService);
@@ -46,46 +39,53 @@ export class ProfileComponent {
     description: new FormControl('', [Validators.maxLength(2000)]),
   });
 
+  ngOnInit(): void {
+    this.profileService.getCurrentUser().subscribe({
+      next: (userProfile: UserProfile) => {
+        const roleM: boolean = userProfile.role === Role.HIRER;
+        this.profileForm.patchValue({
+          role: roleM,
+          email: userProfile.email,
+          name: userProfile.name,
+          lastName: userProfile.lastName,
+          country: userProfile.country,
+          address: userProfile.address,
+          city: userProfile.city,
+          postalCode: userProfile.postalCode,
+          phone: {
+            phoneCode: userProfile.phone?.phoneCode?.toString() || '',
+            phoneNumber: userProfile.phone?.phoneNumber?.toString() || '',
+            sharePhone: userProfile.phone?.sharePhone || false,
+          },
+          description: userProfile.description,
+        });
+      },
+      error: () => {
+        this.snackBar.open(
+          'Error al intentar actualizar, intente en unos minutos',
+          'Ok',
+          {
+            duration: 2000,
+          }
+        );
+      },
+    });
+  }
+
   get form() {
     return this.profileForm as FormGroup;
   }
 
-  isRequired(controlName: string): string {
-    return this.form.get(controlName)?.hasError('required')
-      ? MessageErrors[controlName as keyof typeof MessageErrors]
-      : '';
+  checkErrors(input: string, validatorError: string) {
+    return hasError(this.form, input, validatorError);
   }
 
-  hasError(input: string, validatorError: string) {
-    return this.form.get(input)?.hasError(validatorError)
-      ? MessageErrors[
-          `${input}_hasError_${validatorError}` as keyof typeof MessageErrors
-        ]
-      : this.isRequired(input);
+  checkPatternErros(input: string): string {
+    return hasPatternError(this.form, input);
   }
 
-  hasPatternError(input: string): string {
-    if (input === 'postalCode') {
-      return this.form.get(input)?.hasError('pattern')
-        ? MessageErrors[
-            `${input}_hasError_${'pattern'}` as keyof typeof MessageErrors
-          ]
-        : '';
-    }
-    const inputSplit = input.split('.');
-    const phoneNumberControl = this.form.get(input);
-    return phoneNumberControl?.hasError('pattern')
-      ? MessageErrors[
-          `${inputSplit[1]}_hasError_pattern` as keyof typeof MessageErrors
-        ]
-      : '';
-  }
-
-  getErrorMessage(input: string): boolean | undefined {
-    const validation =
-      this.form.get(input)?.invalid &&
-      (this.form.get(input)?.dirty || this.form.get(input)?.touched);
-    return validation;
+  checkData(input: string): boolean | undefined {
+    return checkValidation(this.form, input);
   }
 
   async ngSubmit() {
@@ -99,15 +99,19 @@ export class ProfileComponent {
       duration: 2000,
     });
     console.log(userProfile);
-    /* await this.profileService.updateProfile(userProfile).subscribe({
+    this.profileService.updateProfile(userProfile).subscribe({
       next: () => {
         console.log('Profile updated');
       },
       error: error => {
-        this.snackBar.open('Error al intentar actualizar, intente en unos minutos', 'Ok', {
-          duration: 2000,
-        });
-        console.log(error);
+        this.snackBar.open(
+          'Error al intentar actualizar, intente en unos minutos',
+          'Ok',
+          {
+            duration: 2000,
+          }
+        );
+        console.error(error);
       },
       complete: () => {
         this.snackBar.open('Perfil actualizado', 'Cerrar', {
@@ -116,7 +120,7 @@ export class ProfileComponent {
         this.isUpdatingProfile = false;
         this.router.navigate(['/']);
       },
-    }); */
+    });
   }
 
   setRole() {

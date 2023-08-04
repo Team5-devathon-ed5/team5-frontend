@@ -14,7 +14,6 @@
       <article class="body-form section-1">
         <fieldset class="check-container">
           <p>¿Quieres ser arrendador?</p>
-          <!-- [checked]="false" [disabled]="false" -->
           <mat-slide-toggle formControlName="role">
             &nbsp; Convertirme en arrendador
           </mat-slide-toggle>
@@ -27,9 +26,8 @@
             placeholder="example@example.com"
             formControlName="email"
             required />
-          <!-- *ngIf="email.invalid" -->
-          <mat-error *ngIf="getErrorMessage('email')">{{
-            hasError('email', 'email')
+          <mat-error *ngIf="checkData('email')">{{
+            checkErrors('email', 'email')
           }}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
@@ -40,9 +38,8 @@
             placeholder="Nombre"
             required
             formControlName="name" />
-          <!-- *ngIf="password.invalid" -->
-          <mat-error *ngIf="getErrorMessage('name')">{{
-            hasError('name', 'name')
+          <mat-error *ngIf="checkData('name')">{{
+            checkErrors('name', 'name')
           }}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
@@ -53,8 +50,8 @@
             placeholder="Apellidos"
             required
             formControlName="lastName" />
-          <mat-error *ngIf="getErrorMessage('lastName')">
-            {{ hasError('lastName', 'lastName') }}
+          <mat-error *ngIf="checkData('lastName')">
+            {{ checkErrors('lastName', 'lastName') }}
           </mat-error>
         </mat-form-field>
       </article>
@@ -67,19 +64,17 @@
             required
             formControlName="country">
             <mat-option>--</mat-option>
-            <!-- *ngFor="let state of states" [value]="state" -->
             <mat-option value="pais X">Valores varios</mat-option>
           </mat-select>
-          <mat-error *ngIf="getErrorMessage('country')">
-            {{ hasError('country', 'country') }}
+          <mat-error *ngIf="checkData('country')">
+            {{ checkErrors('country', 'country') }}
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Dirección</mat-label>
           <input type="text" matInput formControlName="address" />
-          <!-- *ngIf="adress.invalid" -->
-          <mat-error *ngIf="getErrorMessage('address')">{{
-            hasError('address', 'address')
+          <mat-error *ngIf="checkData('address')">{{
+            checkErrors('address', 'address')
           }}</mat-error>
           <mat-hint>
             La dirección no se muestra en la página de perfil público
@@ -88,9 +83,8 @@
         <mat-form-field appearance="outline">
           <mat-label>Ciudad</mat-label>
           <input matInput formControlName="city" />
-          <!-- *ngIf="city.invalid" -->
-          <mat-error *ngIf="getErrorMessage('city')">{{
-            hasError('city', 'city')
+          <mat-error *ngIf="checkData('city')">{{
+            checkErrors('city', 'city')
           }}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
@@ -101,9 +95,8 @@
             #postalCode
             placeholder="Ej. 94105"
             formControlName="postalCode" />
-          <!-- *ngIf="postalCode.invalid" -->
-          <mat-error *ngIf="getErrorMessage('postalCode')">{{
-            hasPatternError('postalCode')
+          <mat-error *ngIf="checkData('postalCode')">{{
+            checkErrors('postalCode', 'pattern')
           }}</mat-error>
         </mat-form-field>
         <table class="phone-container" cellspacing="0" formGroupName="phone">
@@ -126,9 +119,8 @@
                   matInput
                   placeholder="123456789"
                   formControlName="phoneNumber" />
-                <!-- *ngIf="phone.invalid" -->
-                <mat-error *ngIf="getErrorMessage('phone.phoneNumber')">{{
-                  hasPatternError('phone.phoneNumber')
+                <mat-error *ngIf="checkData('phone.phoneNumber')">{{
+                  checkPatternErros('phone.phoneNumber')
                 }}</mat-error>
               </mat-form-field>
             </td>
@@ -155,8 +147,8 @@
             {{ 2000 - (profileForm.get('description')?.value || '').length }}
             caracteres (max. 2000)
           </mat-hint>
-          <mat-error *ngIf="getErrorMessage('description')">
-            {{ hasError('description', 'description') }}
+          <mat-error *ngIf="checkData('description')">
+            {{ checkErrors('description', 'description') }}
           </mat-error>
         </mat-form-field>
         <mat-divider></mat-divider>

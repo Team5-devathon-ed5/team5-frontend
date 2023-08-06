@@ -19,3 +19,4 @@ import { AngularMaterialModule } from './shared/modules/angular-material/angular
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+//footer

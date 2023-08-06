@@ -10,3 +10,4 @@ import { FooterComponent } from './components/footer/footer.component';
   exports: [AngularMaterialModule, HeaderComponent, FooterComponent],
 })
 export class SharedModule {}
+//footer

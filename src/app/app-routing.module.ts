@@ -9,6 +9,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/auth/auth.module').then(m => m.AuthModule),
   },
+  {
+    path: 'abled',
+    loadChildren: () =>
+      import('./layout/layout.module').then(m => m.LayoutModule),
+  },
   // TODO: Change to not found page
   {
     path: '**',

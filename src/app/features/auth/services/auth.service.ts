@@ -73,4 +73,31 @@ export class AuthService {
   setTokenId(res: Token) {
     localStorage.setItem('userData', JSON.stringify(res));
   }
+
+  forgotPassword(email: string) {
+    return this.http
+      .post(`/api/able/forgot-password`, {
+        email,
+      })
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/auth/login']);
+        },
+        error: err => {
+          this._snackBar.open('No se pudo completar el envio', 'Cerrar', {
+            duration: 2000,
+          });
+          return err;
+        },
+        complete: () => {
+          this._snackBar.open(
+            'Se le ha enviado un e-mail con más detalles',
+            'Cerrar',
+            {
+              duration: 2000,
+            }
+          );
+        },
+      });
+  }
 }

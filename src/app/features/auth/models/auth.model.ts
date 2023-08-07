@@ -4,13 +4,15 @@ export interface Token {
 }
 
 export interface AuthLogin {
-  username: string;
+  email: string;
   password: string;
 }
 
 export interface AuthRegister {
-  username: string;
+  email: string;
   password: string;
   passwordConfirm: string;
-  email: string;
+  name: string;
+  lastName: string;
+  country: string;
 }

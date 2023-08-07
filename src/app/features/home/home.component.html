@@ -1,0 +1,78 @@
+<main>
+  <section class="hero">
+    <div class="search-container">
+      <!-- TODO: Add search component -->
+      <app-search-form></app-search-form>
+    </div>
+  </section>
+
+  <section class="storefront">
+    <article class="lsize">
+      <div class="storefront-title">
+        <h2>Escaparate</h2>
+        <a href="#" class="btn btn-secondary"> ¡Anuncie aquí! </a>
+      </div>
+      <div class="cards-container">
+        <app-storefront
+          *ngFor="let card of [1, 2, 3, 4, 5, 6, 7, 8]"
+          [image]="card">
+        </app-storefront>
+      </div>
+    </article>
+  </section>
+
+  <section class="categories">
+    <!-- category components -->
+    <article class="cards-container">
+      <app-categories *ngFor="let card of category" [image]="card">
+      </app-categories>
+    </article>
+  </section>
+
+  <section class="last_announcements">
+    <!-- last announcements components -->
+  </section>
+
+  <!-- cta content -->
+  <section class="cta-section">
+    <div class="left-part">
+      <div class="left-side-content">
+        <h2>Registre su estancia en Abled</h2>
+        <p>
+          !Llegue a miles de clientes con el servicio de alquiler de cabañas más
+          grande y completo
+        </p>
+        <ul>
+          <li>El registro y envío de notificaciones es gratuito.</li>
+          <li>Tú decides en qué condiciones, cuándo y a quién le alquilas.</li>
+          <li>
+            Herramientas sencillas para administrar notificaciones y reservas.
+          </li>
+          <button>Únete a nuestra comunidad</button>
+        </ul>
+      </div>
+    </div>
+    <div class="right-part">
+      <div class="right-side-content">
+        <h2>Comparte tu experiencia inclusiva con miles de usuarios.</h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="spech">
+    <!-- spech content -->
+    <p>
+      Bienvenidos a Abled, tu plataforma de hoteles accesibles para personas con
+      movilidad reducida. Descubre una amplia selección de alojamientos
+      adaptados, desde cabañas junto al mar hasta retiros en las montañas, todo
+      pensado para ofrecer experiencias de viaje inclusivas y memorables.
+      Nuestro compromiso es asegurar que cada huésped disfrute de comodidad y
+      facilidad durante su estancia, con instalaciones diseñadas para movilidad,
+      personal capacitado y asistencia personalizada. Explora la diversidad de
+      opciones y planifica tus vacaciones sin barreras en Abled, donde la
+      accesibilidad y la belleza de la naturaleza se unen para crear momentos
+      inolvidables. ¡Te invitamos a vivir una experiencia de viaje única y para
+      todos!
+    </p>
+  </section>
+</main>

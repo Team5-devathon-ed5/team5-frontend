@@ -1,0 +1,41 @@
+.card {
+  max-width: 356px;
+}
+
+img[mat-card-image] {
+  object-fit: cover;
+}
+
+mat-divider {
+  margin: 0.3rem 1rem;
+  border-color: #fff;
+}
+
+.card {
+  border-radius: 4px;
+  overflow: hidden;
+  height: 100%;
+
+  img {
+    height: 150px;
+    object-fit: cover;
+    width: 100%;
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+  }
+}
+
+mat-card,
+mat-card-header,
+mat-card-title {
+  color: #54775d;
+  background: #fff;
+}
+
+mat-card-header {
+  margin: 0 auto;
+  height: 3rem;
+}

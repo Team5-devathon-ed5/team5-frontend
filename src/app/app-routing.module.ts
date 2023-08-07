@@ -2,20 +2,22 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'profile' },
-  {
-    path: 'profile',
-    loadChildren: () =>
-      import('./features/profile/profile.module').then(m => m.ProfileModule),
-  },
+  // TODO: Add route to main
+  { path: '', redirectTo: 'abled', pathMatch: 'full' },
   {
     path: 'auth',
     loadChildren: () =>
       import('./features/auth/auth.module').then(m => m.AuthModule),
   },
   {
+    path: 'abled',
+    loadChildren: () =>
+      import('./layout/layout.module').then(m => m.LayoutModule),
+  },
+  // TODO: Change to not found page
+  {
     path: '**',
-    redirectTo: 'auth',
+    redirectTo: 'abled',
   },
 ];
 

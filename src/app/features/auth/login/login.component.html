@@ -27,13 +27,15 @@
       </p>
       <p class="alternative">
         ¿No tienes una cuenta?
-        <span routerLink="/auth/sign-up" routerLinkActive="active"
-          >Registrate!</span
-        >
+        <span routerLink="/auth/sign-up">Registrate!</span>
       </p>
       <button [disabled]="f.invalid" mat-raised-button color="primary">
         Enviar
       </button>
+      <p class="alternative">
+        <br />
+        <span routerLink="/">Volver al inicio</span>
+      </p>
     </form>
   </div>
 </div>

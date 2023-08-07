@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   // TODO: Add route to main
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '', redirectTo: 'abled', pathMatch: 'full' },
   {
     path: 'auth',
     loadChildren: () =>
@@ -17,7 +17,7 @@ const routes: Routes = [
   // TODO: Change to not found page
   {
     path: '**',
-    redirectTo: 'auth',
+    redirectTo: 'abled',
   },
 ];
 

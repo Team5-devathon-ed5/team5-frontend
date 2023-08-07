@@ -22,7 +22,9 @@
           {{ checkErrors('password', 'requirements') }}
         </mat-error>
       </mat-form-field>
-      <p class="forgot-label">¿Olvidaste tu contraseña?</p>
+      <p class="forgot-label" routerLink="/auth/forgot-password">
+        ¿Olvidaste tu contraseña?
+      </p>
       <p class="alternative">
         ¿No tienes una cuenta?
         <span routerLink="/auth/sign-up" routerLinkActive="active"

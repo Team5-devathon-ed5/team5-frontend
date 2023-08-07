@@ -8,4 +8,5 @@ import { Router } from '@angular/router';
 })
 export class FooterComponent {
   private router = inject(Router);
+  //hola mundo
 }

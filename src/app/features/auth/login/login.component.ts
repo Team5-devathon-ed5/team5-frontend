@@ -25,7 +25,7 @@ export class LoginComponent {
 
   passwordControl: FormControl = new FormControl('', Validators.required);
   loginForm: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
       CustomValidators.checkPassword,
@@ -46,9 +46,9 @@ export class LoginComponent {
 
   async login() {
     if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
+      const { email, password } = this.loginForm.value;
 
-      await this.service.login({ username, password } as AuthLogin).subscribe({
+      await this.service.login({ email, password } as AuthLogin).subscribe({
         next: response => {
           this.service.setTokenId(response);
         },

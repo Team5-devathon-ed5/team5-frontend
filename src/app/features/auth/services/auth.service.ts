@@ -54,7 +54,6 @@ export class AuthService {
       })
       .pipe(
         tap(data => {
-          console.log(data);
           if (!data) {
             localStorage.removeItem('token');
             this.router.navigate(['/auth/login']);

@@ -17,13 +17,15 @@ export class AuthService {
   apiUrl = 'http://localhost:8080/';
 
   register(inputdata: AuthRegister): Subscription {
-    const { username, password, email } = inputdata;
+    const { password, email, name, lastName, country } = inputdata;
 
     return this.http
-      .post<Token>(`/api/able/register`, {
-        username,
+      .post<Token>(`/api/v1/register`, {
         password,
         email,
+        name,
+        last_name: lastName,
+        country,
       })
       .subscribe({
         next: () => {
@@ -44,20 +46,21 @@ export class AuthService {
   }
 
   login(authLogin: AuthLogin): Observable<Token> {
-    const { username, password } = authLogin;
+    const { email, password } = authLogin;
     return this.http
-      .post<Token>(`/api/able/login`, {
-        username,
+      .post<Token>(`/api/v1/login`, {
+        email,
         password,
       })
       .pipe(
         tap(data => {
+          console.log(data);
           if (!data) {
             localStorage.removeItem('token');
             this.router.navigate(['/auth/login']);
           }
           localStorage.setItem('token', data.jwTtoken);
-          this.router.navigate(['/']);
+          this.router.navigate(['/abled']);
         }),
         catchError(error => {
           if (error.status === 403) {
@@ -76,7 +79,7 @@ export class AuthService {
 
   forgotPassword(email: string) {
     return this.http
-      .post(`/api/able/forgot-password`, {
+      .post(`/api/v1/forgot-password`, {
         email,
       })
       .subscribe({

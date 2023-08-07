@@ -7,13 +7,6 @@
       appearance="outline">
       <p class="title">Registrate!</p>
       <mat-form-field appearance="outline">
-        <mat-label>Nombre de usuario </mat-label>
-        <input formControlName="username" matInput type="text" />
-        <mat-error *ngIf="checkData('username')">
-          {{ checkErrors('username', 'minlength') }}
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
         <mat-label>Dirección e-mail </mat-label>
         <input formControlName="email" matInput type="text" />
         <mat-error *ngIf="checkData('email')">

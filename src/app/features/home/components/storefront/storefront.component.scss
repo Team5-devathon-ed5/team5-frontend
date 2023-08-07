@@ -1,0 +1,43 @@
+.card {
+  max-width: 356px;
+}
+
+img[mat-card-image] {
+  object-fit: cover;
+}
+
+mat-divider {
+  margin: 0.3rem 1rem;
+  border-color: #fff;
+}
+
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100%;
+
+  img {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    vertical-align: middle;
+  }
+}
+
+mat-card,
+mat-card-header,
+mat-card-title,
+mat-card-subtitle,
+mat-card-content,
+mat-card-footer {
+  background: #54775d;
+  color: #fff;
+}
+
+mat-card-footer {
+  padding: 0.3rem 1rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

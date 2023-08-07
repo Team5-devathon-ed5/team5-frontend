@@ -1,0 +1,65 @@
+<form class="search-form">
+  <h1>Alquile estancias desde cualquier lugar del mundo.</h1>
+  <div class="form-container">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-icon matPrefix>search</mat-icon>
+      <!-- <mat-label>Favorite food</mat-label> -->
+      <input matInput placeholder="Destino, ubicación o nombre de estancia" />
+    </mat-form-field>
+
+    <div class="data-x">
+      <mat-form-field appearance="outline">
+        <!-- <mat-label>Enter a date range</mat-label> -->
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="Llegada" />
+          <input matEndDate placeholder="Salida" />
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+      <mat-form-field
+        role="button"
+        mat-button
+        [matMenuTriggerFor]="menu"
+        #menuTrigger
+        appearance="outline">
+        <input matInput placeholder="Huéspedes" />
+        <mat-icon matSuffix> keyboard_arrow_down </mat-icon>
+      </mat-form-field>
+      <mat-menu #menu="matMenu" class="guests-container">
+        <div class="list-people">
+          <h3>Adultos</h3>
+          <button mat-raised-button color="warn" (click)="decreaseAdults()">
+            -
+          </button>
+          <div class="result">
+            {{ adults }}
+          </div>
+          <button mat-raised-button color="primary" (click)="increaseAdults()">
+            +
+          </button>
+        </div>
+
+        <div class="list-people">
+          <h3>Niños</h3>
+          <button mat-raised-button color="warn" (click)="decreaseChildren()">
+            -
+          </button>
+          <div class="result">
+            {{ children }}
+          </div>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="increaseChildren()">
+            +
+          </button>
+        </div>
+      </mat-menu>
+    </div>
+    <button mat-raised-button type="submit" color="primary">Buscar</button>
+  </div>
+</form>

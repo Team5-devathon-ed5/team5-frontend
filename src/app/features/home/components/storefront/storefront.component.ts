@@ -7,8 +7,4 @@ import { Component, Input } from '@angular/core';
 })
 export class StorefrontComponent {
   @Input() image!: number;
-
-  constructor() {
-    console.log(this.image);
-  }
 }

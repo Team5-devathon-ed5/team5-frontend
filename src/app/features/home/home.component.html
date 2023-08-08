@@ -1,7 +1,6 @@
 <main>
   <section class="hero">
     <div class="search-container">
-      <!-- TODO: Add search component -->
       <app-search-form></app-search-form>
     </div>
   </section>
@@ -9,8 +8,10 @@
   <section class="storefront">
     <article class="lsize">
       <div class="storefront-title">
-        <h2>Escaparate</h2>
-        <a href="#" class="btn btn-secondary"> ¡Anuncie aquí! </a>
+        <h2>Destacados</h2>
+        <a routerLink="/auth/register" class="btn btn-secondary">
+          ¡Anuncia aquí!
+        </a>
       </div>
       <div class="cards-container">
         <app-storefront
@@ -22,7 +23,6 @@
   </section>
 
   <section class="categories">
-    <!-- category components -->
     <article class="cards-container">
       <app-categories *ngFor="let card of category" [image]="card">
       </app-categories>
@@ -37,9 +37,9 @@
   <section class="cta-section">
     <div class="left-part">
       <div class="left-side-content">
-        <h2>Registre su estancia en Abled</h2>
+        <h2>Registra tu estancia en Abled</h2>
         <p>
-          !Llegue a miles de clientes con el servicio de alquiler de cabañas más
+          !Llega a miles de clientes con el servicio de alquiler de hoteles más
           grande y completo
         </p>
         <ul>
@@ -48,7 +48,7 @@
           <li>
             Herramientas sencillas para administrar notificaciones y reservas.
           </li>
-          <button>Únete a nuestra comunidad</button>
+          <button routerLink="/auth/register">Únete a nuestra comunidad</button>
         </ul>
       </div>
     </div>

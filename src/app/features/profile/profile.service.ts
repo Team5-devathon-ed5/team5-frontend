@@ -21,7 +21,6 @@ export class ProfileService {
   constructor() {
     this.jwtData = localStorage.getItem('userData') || null;
     this.jwtToken = JSON.parse(this.jwtData || '{}').jwTtoken;
-    console.log(this.jwtToken);
   }
 
   private decodeJwt() {
@@ -46,21 +45,22 @@ export class ProfileService {
   }
 
   getCurrentUser() {
-    return this.http.get<UserProfile>(
-      `${this.apiUrl}/users/${this.getUserId()}`,
-      {
+    return this.http.get<UserProfile>(`/api/v1/users/${this.getUserId()}`, {
+      headers: {
+        Authorization: `Bearer ${this.jwtToken}`,
+        Accept: 'application/json',
+      },
+    });
+  }
+
+  updateProfile(userProfile: UserProfile) {
+    return this.http
+      .patch(`/api/v1/users/${this.getUserId()}`, userProfile, {
         headers: {
           Authorization: `Bearer ${this.jwtToken}`,
           Accept: 'application/json',
         },
-      }
-    );
-  }
-
-  updateProfile(userProfile: UserProfile) {
-    console.log(userProfile);
-    return this.http
-      .put(`${this.apiUrl}/users/${this.getUserId()}`, userProfile)
+      })
       .pipe(
         catchError(error => {
           if (error.status === 401 || error.status === 403) {

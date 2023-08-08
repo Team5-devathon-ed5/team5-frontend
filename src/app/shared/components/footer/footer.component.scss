@@ -81,7 +81,7 @@ footer {
          .text{
           font-size:1.1rem ;
           margin-bottom: 2px;
-          color: #656565;
+          color: #fff;
          }
          textarea,input {
           resize:none;
@@ -146,7 +146,7 @@ footer {
    }
 }
 @media screen and (max-width:900px){
-  
+
   .main-content{
     flex-wrap: wrap;
     flex-direction: column;

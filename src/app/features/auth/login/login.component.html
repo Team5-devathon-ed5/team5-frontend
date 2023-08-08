@@ -3,10 +3,10 @@
     <form class="login-content" (ngSubmit)="login()" [formGroup]="loginForm">
       <h2 class="title">Iniciar Sesión</h2>
       <mat-form-field appearance="outline">
-        <mat-label>Nombre de usuario</mat-label>
-        <input formControlName="username" matInput type="text" />
-        <mat-error *ngIf="checkData('username')">
-          {{ checkErrors('username', 'minlength') }}
+        <mat-label>Dirección e-mail </mat-label>
+        <input formControlName="email" matInput type="text" />
+        <mat-error *ngIf="checkData('email')">
+          {{ checkErrors('email', 'email') }}
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -27,13 +27,15 @@
       </p>
       <p class="alternative">
         ¿No tienes una cuenta?
-        <span routerLink="/auth/sign-up" routerLinkActive="active"
-          >Registrate!</span
-        >
+        <span routerLink="/auth/sign-up">Registrate!</span>
       </p>
       <button [disabled]="f.invalid" mat-raised-button color="primary">
         Enviar
       </button>
+      <p class="alternative">
+        <br />
+        <span routerLink="/">Volver al inicio</span>
+      </p>
     </form>
   </div>
 </div>

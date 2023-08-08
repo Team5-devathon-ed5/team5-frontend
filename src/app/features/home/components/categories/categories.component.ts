@@ -7,8 +7,4 @@ import { Component, Input } from '@angular/core';
 })
 export class CategoriesComponent {
   @Input() image!: string;
-
-  constructor() {
-    console.log(this.image);
-  }
 }

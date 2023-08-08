@@ -7,13 +7,6 @@
       appearance="outline">
       <p class="title">Registrate!</p>
       <mat-form-field appearance="outline">
-        <mat-label>Nombre de usuario </mat-label>
-        <input formControlName="username" matInput type="text" />
-        <mat-error *ngIf="checkData('username')">
-          {{ checkErrors('username', 'minlength') }}
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
         <mat-label>Dirección e-mail </mat-label>
         <input formControlName="email" matInput type="text" />
         <mat-error *ngIf="checkData('email')">
@@ -56,13 +49,15 @@
       </mat-form-field>
       <p class="alternative">
         ¿Tienes cuenta?
-        <span routerLink="/auth/login" routerLinkActive="active"
-          >Iniciar Sesión</span
-        >
+        <span routerLink="/auth/login">Iniciar Sesión</span>
       </p>
       <button [disabled]="f.invalid" mat-raised-button color="primary">
         Enviar
       </button>
+      <p class="alternative">
+        <br />
+        <span routerLink="/">Volver al inicio</span>
+      </p>
     </form>
   </div>
 </div>

@@ -24,7 +24,10 @@ export class ProfileComponent implements OnInit {
 
   profileForm = new FormGroup({
     role: new FormControl(false),
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl({ value: '', disabled: true }, [
+      Validators.required,
+      Validators.email,
+    ]),
     name: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     country: new FormControl('', [Validators.required]),
@@ -42,6 +45,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.profileService.getCurrentUser().subscribe({
       next: (userProfile: UserProfile) => {
+        console.log(userProfile);
         const roleM: boolean = userProfile.role === Role.HIRER;
         this.profileForm.patchValue({
           role: roleM,

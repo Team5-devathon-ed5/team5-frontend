@@ -23,10 +23,6 @@ export class RegisterComponent {
 
   registerForm: FormGroup = new FormGroup(
     {
-      username: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-      ]),
       password: new FormControl('', [
         Validators.required,
         CustomValidators.checkPassword,
@@ -35,8 +31,6 @@ export class RegisterComponent {
         Validators.required,
         CustomValidators.checkPassword,
       ]),
-      // name: new FormControl('', [Validators.required]),
-      // surname: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
     },
     { validators: [CustomValidators.passwordsMatching] }

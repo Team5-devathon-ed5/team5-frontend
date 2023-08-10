@@ -9,7 +9,7 @@
 }
 .register-container {
 
-  background:#fff;
+    background: var(--abled-spec-general-background-a);
       background-size:cover ;
       background-position: center;
       background-repeat: no-repeat;
@@ -40,7 +40,7 @@
   }
   .forgot-label{
     font: 16px;
-    color:#0152d5 ;
+    color: var(--abled-primary-500) ;
     text-align: center;
     cursor: pointer;
   }
@@ -48,7 +48,7 @@
     font-weight: 500;
     text-align: center;
     span{
-      color:#0152d5 ;
+      color:var(--abled-primary-500) ;
       cursor: pointer;
     }
   }

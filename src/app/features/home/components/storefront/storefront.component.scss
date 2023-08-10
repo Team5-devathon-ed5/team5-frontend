@@ -1,13 +1,12 @@
-.card {
-  max-width: 356px;
-}
+// .card {
+//   max-width: 356px;
+// }
 
 img[mat-card-image] {
   object-fit: cover;
 }
 
 mat-divider {
-  margin: 0.3rem 1rem;
   border-color: #fff;
 }
 
@@ -31,7 +30,7 @@ mat-card-title,
 mat-card-subtitle,
 mat-card-content,
 mat-card-footer {
-  background: #54775d;
+  background: var(--abled-primary-600);
   color: #fff;
 }
 

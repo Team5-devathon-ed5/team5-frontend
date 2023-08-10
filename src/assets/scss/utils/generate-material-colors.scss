@@ -1,0 +1,29 @@
+@use '../palette';
+
+@mixin generateColors($prefix, $palette) {
+  $colors-map: ();
+
+  @each $key, $value in $palette {
+    @if $key !=contrast {
+      .abled-#{$prefix}-#{$key} {
+        color: map-get($palette, $key);
+      }
+
+    $map: ();
+    $map: map-merge($map, ($key: $value));
+    $colors-map: map-merge($colors-map, $map);
+    }
+  }
+
+  :root {
+    @each $key, $value in $colors-map {
+      --abled-#{$prefix}-#{$key}: #{$value};
+    }
+  }
+}
+
+@mixin generate-material-classes {
+   @include generateColors(primary, $abled-primary);
+   @include generateColors(accent, $abled-accent);
+   @include generateColors(warning, $abled-warning);
+}

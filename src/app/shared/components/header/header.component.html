@@ -11,5 +11,8 @@
     <button [routerLink]="['/auth/login']" mat-icon-button>
       <mat-icon>person</mat-icon>
     </button>
+    <button (click)="changeMode()" mat-icon-button>
+      <mat-icon>{{ !isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
   </mat-toolbar>
 </header>

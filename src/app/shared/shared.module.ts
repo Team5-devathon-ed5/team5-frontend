@@ -17,4 +17,3 @@ import { MapComponent } from './components/map/map.component';
   ],
 })
 export class SharedModule {}
-//footer

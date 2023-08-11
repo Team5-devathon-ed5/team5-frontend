@@ -7,7 +7,7 @@
       <input matInput placeholder="Destino, ubicación o nombre de estancia" />
     </mat-form-field>
 
-    <div class="data-x">
+    <div class="data-search">
       <mat-form-field appearance="outline">
         <!-- <mat-label>Enter a date range</mat-label> -->
         <mat-date-range-input [rangePicker]="picker">
@@ -29,37 +29,20 @@
         <input matInput placeholder="Huéspedes" />
         <mat-icon matSuffix> keyboard_arrow_down </mat-icon>
       </mat-form-field>
-      <mat-menu #menu="matMenu" class="guests-container">
-        <div class="list-people">
-          <h3>Adultos</h3>
-          <button mat-raised-button color="warn" (click)="decreaseAdults()">
-            -
-          </button>
-          <div class="result">
-            {{ adults }}
-          </div>
-          <button mat-raised-button color="primary" (click)="increaseAdults()">
-            +
-          </button>
-        </div>
-
-        <div class="list-people">
-          <h3>Niños</h3>
-          <button mat-raised-button color="warn" (click)="decreaseChildren()">
-            -
-          </button>
-          <div class="result">
-            {{ children }}
-          </div>
-          <button
-            mat-raised-button
-            color="primary"
-            (click)="increaseChildren()">
-            +
-          </button>
-        </div>
-      </mat-menu>
     </div>
+    <mat-menu #menu="matMenu" class="guests-container">
+      <div class="list-people">
+        <button mat-raised-button color="warn" (click)="decreaseAdults()">
+          -
+        </button>
+        <div class="result">
+          {{ adults }}
+        </div>
+        <button mat-raised-button color="primary" (click)="increaseAdults()">
+          +
+        </button>
+      </div>
+    </mat-menu>
     <button mat-raised-button type="submit" color="primary">Buscar</button>
   </div>
 </form>

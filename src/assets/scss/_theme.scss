@@ -1,9 +1,9 @@
-@use '@angular/material' as mat;
-@use 'sass:map';
+@use "@angular/material" as mat;
+@use "sass:map";
 
-@import './_palette';
-@import './_typography';
-@import './utils/generate-material-colors';
+@import "./_palette";
+@import "./_typography";
+@import "./utils/generate-material-colors";
 
 @include mat.all-component-typographies();
 @include mat.core();
@@ -18,13 +18,13 @@ $abled-theme-accent: mat.define-palette($abled-accent, 900, 100, 50);
     $color,
     (
       background: $dark-theme-background-palette,
-      foreground: $dark-theme-foreground-palette,
+      foreground: $dark-theme-foreground-palette
     )
   );
   @return map.merge(
     $theme,
     (
-      color: $color,
+      color: $color
     )
   );
 }
@@ -36,13 +36,13 @@ $abled-theme-accent: mat.define-palette($abled-accent, 900, 100, 50);
     $color,
     (
       background: $light-theme-background-palette,
-      foreground: $light-theme-foreground-palette,
+      foreground: $light-theme-foreground-palette
     )
   );
   @return map.merge(
     $theme,
     (
-      color: $color,
+      color: $color
     )
   );
 }
@@ -51,7 +51,7 @@ $abled-dark-theme: define-dark-theme(
   (
     color: (
       primary: $abled-theme-primary,
-      accent: $abled-theme-accent,
+      accent: $abled-theme-accent
     ),
     density: 0
   )
@@ -61,7 +61,7 @@ $abled-light-theme: define-light-theme(
   (
     color: (
       primary: $abled-theme-primary,
-      accent: $abled-theme-accent,
+      accent: $abled-theme-accent
     ),
     density: 0
   )
@@ -77,11 +77,12 @@ $abled-light-theme: define-light-theme(
   .mat-mdc-input-element {
     background: var(--abled-spec-general-background-a);
   }
-  .search-form, mat-card {
+  .search-form,
+  mat-card {
     background: var(--abled-spec-general-background-a);
-    -webkit-box-shadow:  10px 10px 5px 0px var(--abled-box-shadow);
-    -moz-box-shadow:  10px 10px 5px 0px var(--abled-box-shadow);
-    box-shadow:  10px 10px 5px 0px var(--abled-box-shadow);
+    -webkit-box-shadow: var(--abled-box-shadow);
+    -moz-box-shadow: var(--abled-box-shadow);
+    box-shadow: var(--abled-box-shadow);
   }
 }
 
@@ -92,7 +93,6 @@ $abled-light-theme: define-light-theme(
 }
 
 @mixin dialog-theme($theme) {
-
 }
 
 @mixin custom-components-theme($theme) {
@@ -103,16 +103,15 @@ $abled-light-theme: define-light-theme(
 // default
 // @include mat.all-component-themes($abled-dark-theme);
 
-html[theme='dark-theme'] {
+html[theme="dark-theme"] {
   @include mat.all-component-themes($abled-dark-theme);
   @include custom-components-theme($abled-dark-theme);
 }
 
-html[theme='light-theme'] {
+html[theme="light-theme"] {
   @include mat.all-component-colors($abled-light-theme);
   @include custom-components-theme($abled-light-theme);
 }
-
 
 @include mat.all-component-typographies($abled-typography);
 @include mat.core();

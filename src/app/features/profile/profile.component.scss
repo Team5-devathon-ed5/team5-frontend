@@ -1,5 +1,6 @@
 .user-profile-container {
   width: 100%;
+  margin-bottom: 8rem;
 }
 
 .title-profile,
@@ -14,13 +15,13 @@
 
   h2 {
     font-size: 2em;
-    color: var(--color-heading);
+    color: var(--abled-text-color);
     margin: 0;
   }
 
   p {
     font-size: 1em;
-    color: var(--color-paragraph);
+    color: var(--abled-text-color);
   }
 }
 
@@ -35,12 +36,12 @@
 
   h3 {
     font-size: 1.5em;
-    color: var(--color-heading);
+    color: var(--abled-text-color);
     margin: 0;
 
     span {
       font-size: 1em;
-      color: var(--color-paragraph);
+      color: var(--abled-text-color);
       margin: 0;
     }
   }
@@ -52,18 +53,27 @@
   gap: 0.5em;
 }
 
-table.phone-container {
-  width: 100%;
-  border-collapse: collapse;
-}
-tr {
-  td {
-    width: 20%;
+/* phone - container */
+
+.phone-container {
+  display: flex;
+  flex-direction: column;
+
+  .number-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
   }
-  td {
-    width: 80%;
+
+  .number-container mat-form-field {
+    width: 100%;
+  }
+  .share-container {
+    margin-bottom: 1.2rem;
   }
 }
+
+/* phone - container */
 
 form.form-profile {
   width: 40%;
@@ -75,7 +85,7 @@ form.form-profile {
 
   p {
     font-size: 1em;
-    color: var(--color-paragraph);
+    color: var(--abled-text-color);
   }
 }
 
@@ -83,7 +93,7 @@ form.form-profile {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.5em;
+  gap: 1em;
   margin-top: 1.5em;
 }
 
@@ -92,15 +102,54 @@ fieldset {
   outline: none;
 }
 
-/* ::ng-deep .mat-mdc-form-field-bottom-align {
-  display: none !important;
-}
-*/
-
 .section-2 mat-form-field.last-field {
   margin-bottom: 5em;
 }
 
 .section-2 .buttons-form button[mat-button] {
   text-decoration: underline;
+}
+
+.section-2 .buttons-form button[mat-raised-button] {
+  height: 60px;
+}
+
+/* -------------------BREAKPOINT------------------- */
+
+@media screen and (min-width: 1280px) {
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .user-profile-container {
+    padding: 0 2rem;
+  }
+
+  form.form-profile {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .user-profile-container {
+    padding: 0 1rem;
+    margin-bottom: 6rem;
+  }
+
+  .title-profile,
+  form.form-profile {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .section-2 mat-form-field.last-field {
+    margin-bottom: 2em;
+  }
+
+  mat-hint {
+    font-size: 0.9em;
+  }
+  .buttons-form {
+    justify-content: center;
+    align-items: center;
+  }
 }

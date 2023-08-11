@@ -39,8 +39,6 @@ export class ProfileService {
 
   getUserId(): string | null {
     const payload = this.decodeJwt();
-    console.log(payload.id);
-    console.log(payload.sub);
     return payload ? payload.id : null;
   }
 

@@ -66,6 +66,6 @@ export interface UserProfile extends User {
     phoneNumber: number;
     sharePhone: boolean;
   };
-  description?: string;
+  detail?: string;
   image?: string;
 }

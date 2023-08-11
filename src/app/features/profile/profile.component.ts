@@ -29,7 +29,6 @@ export class ProfileComponent implements OnInit {
       Validators.email,
     ]),
     name: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
     country: new FormControl('', [Validators.required]),
     address: new FormControl('', []),
     city: new FormControl('', []),
@@ -39,29 +38,30 @@ export class ProfileComponent implements OnInit {
       phoneNumber: new FormControl('', [Validators.pattern(/^\d{7,10}$/)]),
       sharePhone: new FormControl(false),
     }),
-    description: new FormControl('', [Validators.maxLength(2000)]),
+    detail: new FormControl('', [Validators.maxLength(2000)]),
   });
 
   ngOnInit(): void {
     this.profileService.getCurrentUser().subscribe({
       next: (userProfile: UserProfile) => {
+        console.group('Entrante');
         console.log(userProfile);
+        console.groupEnd();
         const roleM: boolean = userProfile.role === Role.HIRER;
         this.profileForm.patchValue({
           role: roleM,
           email: userProfile.email,
           name: userProfile.name,
-          lastName: userProfile.lastName,
           country: userProfile.country,
           address: userProfile.address,
           city: userProfile.city,
-          postalCode: userProfile.postalCode,
+          postalCode: userProfile.postalCode?.toString() || null,
           phone: {
-            phoneCode: userProfile.phone?.phoneCode?.toString() || '',
-            phoneNumber: userProfile.phone?.phoneNumber?.toString() || '',
+            phoneCode: userProfile.phone?.phoneCode?.toString() || null,
+            phoneNumber: userProfile.phone?.phoneNumber?.toString() || null,
             sharePhone: userProfile.phone?.sharePhone || false,
           },
-          description: userProfile.description,
+          detail: userProfile.detail,
         });
       },
       error: () => {
@@ -102,7 +102,9 @@ export class ProfileComponent implements OnInit {
     this.snackBar.open('Perfil actualizado', 'Cerrar', {
       duration: 2000,
     });
+    console.group('Saliente');
     console.log(userProfile);
+    console.groupEnd();
     this.profileService.updateProfile(userProfile).subscribe({
       next: () => {
         console.log('Profile updated');

@@ -1,6 +1,6 @@
 export enum Role {
-  ADMIN = 'admin',
-  LODGER = 'lodger',
-  HIRER = 'hirer',
-  LODGER_AND_HIRER = 'lodger_and_hirer',
+  ADMIN = 'ADMIN',
+  LODGER = 'LODGER',
+  HIRER = 'HIRER',
+  LODGER_AND_HIRER = 'LODGER_ADN_HIRER',
 }

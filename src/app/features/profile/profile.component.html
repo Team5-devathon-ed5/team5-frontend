@@ -42,18 +42,6 @@
             checkErrors('name', 'name')
           }}</mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Apellidos</mat-label>
-          <input
-            matInput
-            type="text"
-            placeholder="Apellidos"
-            required
-            formControlName="lastName" />
-          <mat-error *ngIf="checkData('lastName')">
-            {{ checkErrors('lastName', 'lastName') }}
-          </mat-error>
-        </mat-form-field>
       </article>
 
       <article class="body-form section-2">
@@ -99,40 +87,34 @@
             checkErrors('postalCode', 'pattern')
           }}</mat-error>
         </mat-form-field>
-        <table class="phone-container" cellspacing="0" formGroupName="phone">
-          <tr>
-            <td class="code-container">
-              <mat-form-field appearance="outline">
-                <mat-label>Código</mat-label>
-                <mat-select formControlName="phoneCode" placeholder="+51">
-                  <mat-option>-----</mat-option>
-                  <mat-option value="+34">+34</mat-option>
-                  <mat-option value="+1">+1</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </td>
-            <td class="number-container">
-              <mat-form-field appearance="outline">
-                <mat-label>Teléfono</mat-label>
-                <input
-                  type="number"
-                  matInput
-                  placeholder="123456789"
-                  formControlName="phoneNumber" />
-                <mat-error *ngIf="checkData('phone.phoneNumber')">{{
-                  checkPatternErros('phone.phoneNumber')
-                }}</mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-checkbox formControlName="sharePhone">
-                El número de teléfono puede mostrarse públicamente
-              </mat-checkbox>
-            </td>
-          </tr>
-        </table>
+        <div class="phone-container" formGroupName="phone">
+          <div class="number-container">
+            <mat-form-field appearance="outline">
+              <mat-label>Código</mat-label>
+              <mat-select formControlName="phoneCode" placeholder="+51">
+                <mat-option>-----</mat-option>
+                <mat-option value="+34">+34</mat-option>
+                <mat-option value="+1">+1</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Teléfono</mat-label>
+              <input
+                type="number"
+                matInput
+                placeholder="123456789"
+                formControlName="phoneNumber" />
+              <mat-error *ngIf="checkData('phone.phoneNumber')">{{
+                checkPatternErros('phone.phoneNumber')
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="share-container">
+            <mat-checkbox formControlName="sharePhone">
+              El número de teléfono puede mostrarse públicamente
+            </mat-checkbox>
+          </div>
+        </div>
         <mat-form-field appearance="outline" class="last-field">
           <mat-label>Sobre mi</mat-label>
           <textarea
@@ -141,14 +123,14 @@
             rows="5"
             maxLength="2000"
             placeholder="Información sobre mi"
-            formControlName="description"></textarea>
+            formControlName="detail"></textarea>
           <mat-hint>
             Quedan
-            {{ 2000 - (profileForm.get('description')?.value || '').length }}
+            {{ 2000 - (profileForm.get('detail')?.value || '').length }}
             caracteres (max. 2000)
           </mat-hint>
-          <mat-error *ngIf="checkData('description')">
-            {{ checkErrors('description', 'description') }}
+          <mat-error *ngIf="checkData('detail')">
+            {{ checkErrors('detail', 'detail') }}
           </mat-error>
         </mat-form-field>
         <mat-divider></mat-divider>
@@ -161,7 +143,9 @@
             (click)="ngSubmit()">
             Actualizar información
           </button>
-          <button mat-button color="warn">Cancelar cambios</button>
+          <button mat-button color="warn" routerLink="/abled/home">
+            Cancelar cambios
+          </button>
         </fieldset>
       </article>
     </form>

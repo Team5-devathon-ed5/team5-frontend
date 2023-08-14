@@ -1,0 +1,41 @@
+<div class="carousel-main">
+  <div class="carousel-container">
+    <button
+      class="prev-button"
+      (keydown.arrowLeft)="prevImage()"
+      (click)="prevImage()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+
+    <div class="carousel">
+      <div
+        class="translater-image"
+        [style.transform]="'translateX(' + offset + 'px)'">
+        <div class="slider-section" *ngFor="let image of images; let i = index">
+          <img [src]="image" alt="image" />
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="next-button"
+      (keydown.arrowRight)="nextImage()"
+      (click)="nextImage()">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+  <div class="image-list">
+    <div
+      class="image-list-inner"
+      [style.transform]="'translateX(' + listOffset + 'px)'">
+      <div
+        *ngFor="let image of images; let i = index"
+        aria-hidden="true"
+        class="list-item"
+        [class.active]="i === currentIndex"
+        (click)="goToImage(i)">
+        <img class="image-item" [src]="image" alt="image" />
+      </div>
+    </div>
+  </div>
+</div>

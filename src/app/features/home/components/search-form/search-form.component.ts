@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.scss'],
 })
-export class SearchFormComponent {
+export class SearchFormComponent implements OnInit {
   adults = 1;
-  children = 0;
+
+  minDate: Date = new Date();
+  maxDate: Date = new Date();
+
+  ngOnInit(): void {
+    this.maxDate.setDate(this.minDate.getDate() + 90);
+  }
 
   increaseAdults() {
     this.adults++;
@@ -16,16 +22,6 @@ export class SearchFormComponent {
   decreaseAdults() {
     if (this.adults > 1) {
       this.adults--;
-    }
-  }
-
-  increaseChildren() {
-    this.children++;
-  }
-
-  decreaseChildren() {
-    if (this.children > 0) {
-      this.children--;
     }
   }
 }

@@ -1,22 +1,24 @@
-<mat-card class="card">
-  <img
-    mat-card-image
-    [src]="'../../../../../assets/images/storefront/' + image + '.webp'"
-    alt="Photo of a Shiba Inu" />
-  <mat-card-header>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    <mat-card-title>Shiba Inu</mat-card-title>
-  </mat-card-header>
-  <mat-divider></mat-divider>
-  <mat-card-footer>
-    <div class="price">
-      <span class="price__currency">$</span>
-      <span class="price__amount">20</span>
-      <span class="price__period">/por noche</span>
-    </div>
-    <div class="score">
-      <span class="score__value">4.9</span>
-      <span class="score__label">Excelente</span>
-    </div>
-  </mat-card-footer>
-</mat-card>
+<a routerLink="/lodging">
+  <mat-card class="card">
+    <img
+      mat-card-image
+      [src]="'../../../../../assets/images/storefront/' + image + '.webp'"
+      alt="Photo of a Shiba Inu" />
+    <mat-card-header>
+      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      <mat-card-title>Shiba Inu</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-footer>
+      <div class="price">
+        <span class="price__currency">$</span>
+        <span class="price__amount">20</span>
+        <span class="price__period">/por noche</span>
+      </div>
+      <div class="score">
+        <span class="score__value">4.9</span>
+        <span class="score__label">Excelente</span>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</a>

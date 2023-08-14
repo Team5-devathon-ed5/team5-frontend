@@ -1,0 +1,50 @@
+<section class="lodging-container">
+  <div class="details-section">
+    <div class="details-title">
+      <h2>{{ lodging.name }}</h2>
+      <p>
+        <mat-icon color="primary">star</mat-icon>
+        <span>{{ lodging.rating }} Estrellas</span>
+      </p>
+    </div>
+    <app-carousel></app-carousel>
+    <div class="details-content">
+      <div class="details-content-item">
+        <p>{{ lodging.address }}</p>
+      </div>
+      <div class="details-content-item">
+        <p>{{ lodging.phone }}</p>
+      </div>
+      <div class="details-content-item">
+        <p>{{ lodging.email }}</p>
+      </div>
+    </div>
+  </div>
+
+  <aside class="aside-container">
+    <div class="aside-title">
+      <h4>Hacer una Reserva</h4>
+    </div>
+    <div class="aside-calendar">
+      <h5>Elige la fecha de tu viaje</h5>
+      <app-calendar (rangeTravel)="selectedChange($event)"></app-calendar>
+      <div class="resume-travel">
+        <div class="resume-travel__item">
+          <p>Fecha de entrada</p>
+          <p>{{ checkIn | date: 'dd/MM/yyyy' }}</p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="resume-travel__item">
+          <p>Fecha de salida</p>
+          <p>{{ checkOut | date: 'dd/MM/yyyy' }}</p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="resume-travel__item">
+          <p>Precio</p>
+          <p>{{ lodging.price | currency: 'EUR' }}</p>
+        </div>
+        <button mat-raised-button color="primary">Solicitar Reserva</button>
+      </div>
+    </div>
+  </aside>
+</section>

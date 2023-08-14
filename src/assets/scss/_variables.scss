@@ -1,10 +1,12 @@
 :root {
+  --abled-spec-background-primary: #1c1c1c;
   --abled-spec-10-percent-layer: rgba(255, 255, 255, 0.1);
-  --abled-spec-background-solid: #212121;
   --abled-spec-general-background-a: #181818;
-  --abled-drawer-backdrop-background: rgba(0, 0, 0, 0.5);
   --abled-box-shadow: 0 6px 8px -2px rgba(255, 255, 255, 0.08), 0 2px 4px -1px rgba(255, 255, 255, 0.03);
   --abled-text-color: #ffffff;
+  --abled-spec-background-solid: #212121;
+  --abled-drawer-backdrop-background: rgba(0, 0, 0, 0.5);
+  --abled-primary: #248627;
 }
 
 html[theme="light-theme"] {

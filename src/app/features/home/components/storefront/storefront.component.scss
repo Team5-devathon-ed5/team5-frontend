@@ -2,6 +2,10 @@
 //   max-width: 356px;
 // }
 
+a {
+  text-decoration: none;
+}
+
 img[mat-card-image] {
   object-fit: cover;
 }

@@ -7,13 +7,9 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   category: string[] = [
-    'cabañas',
-    'junto_lago',
-    'junto_mar',
-    'lujo',
-    'mejores_criticas',
-    'piscinas',
-    'reservas_rapidas',
-    'resorts',
+    'Mejores Criticas',
+    'Alojamietos',
+    'Cabañas',
+    'Hoteles',
   ];
 }

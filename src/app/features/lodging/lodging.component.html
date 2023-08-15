@@ -1,22 +1,92 @@
 <section class="lodging-container">
   <div class="details-section">
-    <div class="details-title">
+    <!-- START: Lodging Heading  -->
+    <div class="lodging-heading">
       <h2>{{ lodging.name }}</h2>
       <p>
         <mat-icon color="primary">star</mat-icon>
-        <span>{{ lodging.rating }} Estrellas</span>
+        <span>{{ lodging.reputation }} Estrellas</span>
       </p>
+      <div class="lodging-state">
+        <p class="state-address">
+          <a href="#map">{{ lodging.address }}</a>
+        </p>
+        <p class="state-price">
+          {{ lodging.priceNight | currency: 'EUR' }}/<span>día</span>
+        </p>
+      </div>
     </div>
+    <!-- FINISH: Lodging Heading -->
+
     <app-carousel></app-carousel>
-    <div class="details-content">
-      <div class="details-content-item">
+
+    <!-- START: Lodging Content -->
+    <mat-divider></mat-divider>
+    <div class="lodging-content-container">
+      <div class="lodging-description">
+        <h3>Descripción</h3>
+        <p>{{ lodging.description }}</p>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="lodging-details">
+        <div class="details-item">
+          <h4>Categoría</h4>
+          <p>{{ lodging.category }}</p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="details-item">
+          <h4>Capacidad</h4>
+          <p>{{ lodging.guestCapacity }} personas</p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="details-item">
+          <h4>Ciudad</h4>
+          <p>{{ lodging.city }}</p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="details-item">
+          <h4>País</h4>
+          <p>{{ lodging.country }}</p>
+        </div>
+
+        <mat-divider></mat-divider>
+      </div>
+
+      <div class="lodging-extras-container">
+        <h2>Extras</h2>
+        <ng-container *ngFor="let extra of extrasArray; let i = index">
+          <div class="extras-item">
+            <h4>{{ extra[0] ? extrasNames[i][1] : null }}</h4>
+            <p>{{ extra[1] ? 'Sí' : 'No' }}</p>
+          </div>
+          <mat-divider></mat-divider>
+        </ng-container>
+      </div>
+    </div>
+    <!-- FINISH: Lodging Content -->
+
+    <div id="map" class="map-section">
+      <div class="map-title">
+        <h3>Ubicación</h3>
         <p>{{ lodging.address }}</p>
       </div>
-      <div class="details-content-item">
-        <p>{{ lodging.phone }}</p>
+      <div class="map-body">
+        <!-- TODO: Add map LeftMap -->
+        Agregar componente de mapa
       </div>
-      <div class="details-content-item">
-        <p>{{ lodging.email }}</p>
+    </div>
+
+    <div class="opinion-section">
+      <div class="opinion-title">
+        <h3>Opiniones</h3>
+        <p>
+          <mat-icon color="primary">star</mat-icon
+          >{{ lodging.reputation }} Estrellas
+        </p>
+      </div>
+      <div class="opinion-body">
+        <!-- TODO: Add opinions component -->
+        Agregar componente de opiniones
       </div>
     </div>
   </div>
@@ -29,19 +99,19 @@
       <h5>Elige la fecha de tu viaje</h5>
       <app-calendar (rangeTravel)="selectedChange($event)"></app-calendar>
       <div class="resume-travel">
-        <div class="resume-travel__item">
+        <div class="resume-travel-item">
           <p>Fecha de entrada</p>
           <p>{{ checkIn | date: 'dd/MM/yyyy' }}</p>
         </div>
         <mat-divider></mat-divider>
-        <div class="resume-travel__item">
+        <div class="resume-travel-item">
           <p>Fecha de salida</p>
           <p>{{ checkOut | date: 'dd/MM/yyyy' }}</p>
         </div>
         <mat-divider></mat-divider>
-        <div class="resume-travel__item">
+        <div class="resume-travel-item">
           <p>Precio</p>
-          <p>{{ lodging.price | currency: 'EUR' }}</p>
+          <p>{{ price | currency: 'EUR' }}</p>
         </div>
         <button mat-raised-button color="primary">Solicitar Reserva</button>
       </div>

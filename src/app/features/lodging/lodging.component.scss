@@ -1,3 +1,8 @@
+a {
+  text-decoration: none;
+  color: var(--abled-text-color);
+}
+
 .lodging-container {
   margin: 3rem auto 4rem;
   max-width: 1216px;
@@ -8,9 +13,9 @@
 .details-section {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
 
-  .details-title {
+  .lodging-heading {
     h2 {
       margin: 0;
       padding: 0;
@@ -26,6 +31,113 @@
 
       span {
         text-indent: 0.5ch;
+      }
+    }
+
+    .lodging-state {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+
+      .state-address {
+        font-size: 1.2rem;
+      }
+
+      .state-price {
+        font-size: 1.5rem;
+        color: var(--abled-primary);
+        align-items: baseline;
+
+        span {
+          font-size: 1rem;
+          font-weight: 500;
+          margin-left: -0.5ch;
+        }
+      }
+    }
+  }
+
+  .lodging-content-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    gap: 1rem;
+
+    .lodging-description {
+      margin: 0;
+      padding: 0;
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+      color: var(--abled-text-color);
+
+      h3 {
+        font-size: 1.8rem;
+        line-height: 2.3rem;
+        color: var(--abled-text-color);
+      }
+
+      p {
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+        color: var(--abled-text-color);
+        text-wrap: balance;
+      }
+    }
+
+    .lodging-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .details-item {
+        display: flex;
+        justify-content: space-between;
+
+        h4,
+        p {
+          margin: 0;
+          padding: 0;
+        }
+
+        h4 {
+          font-weight: 500;
+        }
+      }
+    }
+
+    .lodging-extras-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      h2 {
+        padding-top: 1.8rem;
+        font-size: 1.8rem;
+        line-height: 2.3rem;
+        color: var(--abled-text-color);
+      }
+
+      .extras-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h4 {
+          margin: 0;
+          padding: 0;
+          font-weight: 500;
+          font-size: 1.2rem;
+          line-height: 1.5rem;
+          color: var(--abled-text-color);
+        }
+
+        p {
+          margin: 0;
+          padding: 0;
+          font-size: 1.2rem;
+          line-height: 1.5rem;
+          color: var(--abled-text-color);
+        }
       }
     }
   }
@@ -62,7 +174,7 @@
     flex-direction: column;
     gap: 0.5rem;
 
-    .resume-travel__item {
+    .resume-travel-item {
       display: flex;
       justify-content: space-between;
       align-items: center;

@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { UserProfile } from 'src/app/models/user.model';
+import { User, UserProfile } from 'src/app/features/profile/models/user.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Token } from '../auth/models/auth.model';
+import { Token } from '../../auth/models/auth.model';
+import { catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -43,35 +43,33 @@ export class ProfileService {
   }
 
   getCurrentUser() {
-    return this.http.get<UserProfile>(`/api/v1/users/${this.getUserId()}`, {
-      headers: {
-        Authorization: `Bearer ${this.jwtToken}`,
-        Accept: 'application/json',
-      },
-    });
-  }
-
-  updateProfile(userProfile: UserProfile) {
     return this.http
-      .patch(`/api/v1/users/${this.getUserId()}`, userProfile, {
+      .get<User>(`/api/v1/users/${this.getUserId()}`, {
         headers: {
           Authorization: `Bearer ${this.jwtToken}`,
           Accept: 'application/json',
         },
       })
       .pipe(
-        catchError(error => {
-          if (error.status === 401 || error.status === 403) {
-            return this._snackBar.open(
-              'Debes iniciar sesión para continuar',
-              'Cerrar',
-              {
-                duration: 2000,
-              }
-            );
-          }
-          return error;
+        catchError(err => {
+          this._snackBar.open(
+            'Error al recuperar los datos, intente en unos minutos',
+            'Cerrar',
+            {
+              duration: 2000,
+            }
+          );
+          throw err;
         })
       );
+  }
+
+  updateProfile(userProfile: UserProfile) {
+    return this.http.patch(`/api/v1/users/${this.getUserId()}`, userProfile, {
+      headers: {
+        Authorization: `Bearer ${this.jwtToken}`,
+        Accept: 'application/json',
+      },
+    });
   }
 }

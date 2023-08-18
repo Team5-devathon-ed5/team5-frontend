@@ -41,11 +41,10 @@ export const isRequired = (form: FormGroup, controlName: string): string => {
 };
 
 export const hasPatternError = (form: FormGroup, input: string): string => {
-  const inputSplit = input.split('.');
   const phoneNumberControl = form.get(input);
   return phoneNumberControl?.hasError('pattern')
     ? RequiredMessages[
-        `${inputSplit[1]}_hasError_pattern` as keyof typeof RequiredMessages
+        `${input}_hasError_pattern` as keyof typeof RequiredMessages
       ]
     : '';
 };

@@ -1,8 +1,12 @@
-import { ProfileService } from './profile.service';
+import { ProfileService } from './services/profile.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, inject } from '@angular/core';
-import { UserProfile } from 'src/app/models/user.model';
-import { Role } from 'src/app/models/role.enum';
+import {
+  User,
+  UserProfile,
+  setUserProfileForm,
+} from 'src/app/features/profile/models/user.model';
+import { Role } from 'src/app/features/profile/models/role.enum';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
@@ -23,55 +27,28 @@ export class ProfileComponent implements OnInit {
   isUpdatingProfile = false;
 
   profileForm = new FormGroup({
-    role: new FormControl(false),
+    name: new FormControl('', [Validators.required]),
+    phoneCode: new FormControl('', [Validators.pattern(/^\+[1-9]\d{0,3}/)]),
+    phoneNumber: new FormControl('', [Validators.pattern(/^\d{7,10}$/)]),
+    phoneShare: new FormControl(false),
     email: new FormControl({ value: '', disabled: true }, [
       Validators.required,
       Validators.email,
     ]),
-    name: new FormControl('', [Validators.required]),
-    country: new FormControl('', [Validators.required]),
-    address: new FormControl('', []),
-    city: new FormControl('', []),
-    postalCode: new FormControl('', [Validators.pattern(/^\d{5,6}$/)]),
-    phone: new FormGroup({
-      phoneCode: new FormControl('', [Validators.pattern(/^\+[1-9]\d{0,3}/)]),
-      phoneNumber: new FormControl('', [Validators.pattern(/^\d{7,10}$/)]),
-      sharePhone: new FormControl(false),
-    }),
+    imageUrl: new FormControl('', []),
     detail: new FormControl('', [Validators.maxLength(2000)]),
+    address: new FormControl('', []),
+    country: new FormControl('', [Validators.required]),
+    role: new FormControl(false),
   });
 
   ngOnInit(): void {
     this.profileService.getCurrentUser().subscribe({
-      next: (userProfile: UserProfile) => {
-        console.group('Entrante');
-        console.log(userProfile);
+      next: (user: User) => {
+        console.group('Saliente');
+        console.log(user);
         console.groupEnd();
-        const roleM: boolean = userProfile.role === Role.HIRER;
-        this.profileForm.patchValue({
-          role: roleM,
-          email: userProfile.email,
-          name: userProfile.name,
-          country: userProfile.country,
-          address: userProfile.address,
-          city: userProfile.city,
-          postalCode: userProfile.postalCode?.toString() || null,
-          phone: {
-            phoneCode: userProfile.phone?.phoneCode?.toString() || null,
-            phoneNumber: userProfile.phone?.phoneNumber?.toString() || null,
-            sharePhone: userProfile.phone?.sharePhone || false,
-          },
-          detail: userProfile.detail,
-        });
-      },
-      error: () => {
-        this.snackBar.open(
-          'Error al intentar actualizar, intente en unos minutos',
-          'Ok',
-          {
-            duration: 2000,
-          }
-        );
+        this.profileForm.patchValue(setUserProfileForm(user));
       },
     });
   }
@@ -99,15 +76,14 @@ export class ProfileComponent implements OnInit {
     this.setRole();
     const userProfile: UserProfile = this.form.value;
     this.isUpdatingProfile = true;
-    this.snackBar.open('Perfil actualizado', 'Cerrar', {
-      duration: 2000,
-    });
     console.group('Saliente');
     console.log(userProfile);
     console.groupEnd();
     this.profileService.updateProfile(userProfile).subscribe({
       next: () => {
-        console.log('Profile updated');
+        this.snackBar.open('Perfil actualizado', 'Cerrar', {
+          duration: 2000,
+        });
       },
       error: error => {
         this.snackBar.open(

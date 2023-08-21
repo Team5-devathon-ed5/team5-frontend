@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DateRange } from '@angular/material/datepicker';
-import { Category, Lodging, EXTRAS_NAMES } from './models/lodging.model';
+import { Category, Lodging, EXTRAS_NAMES } from '../../models/lodging.model';
 
 @Component({
   selector: 'app-lodging',

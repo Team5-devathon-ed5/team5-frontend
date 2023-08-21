@@ -1,0 +1,188 @@
+section {
+  width: 100%;
+
+  &:first-child {
+    background: url("https://www.nettimokki.com/build/images/become-renter-hero.e07fd8fa.jpg") no-repeat top;
+    height: 500px;
+    position: relative;
+    z-index: -1000;
+  }
+}
+
+.section-inner {
+  max-width: 1216px;
+  margin: 0 auto;
+}
+
+.card-hero {
+  position: absolute;
+  text-align: center;
+  border-radius: 8px;
+  padding: 48px 70px;
+  margin: auto;
+  max-width: 800px;
+  box-shadow: var(--abled-box-shadow);
+  background: var(--abled-spec-general-background-a);
+  top: 60px;
+  left: 0;
+  right: 0;
+
+  .card-hero-content {
+    justify-content: center;
+
+    .card-hero-title {
+      color: var(--abled-primary);
+      font-weight: 500;
+      margin-bottom: 1.8rem;
+    }
+    .card-hero-text {
+      font-size: 1.2rem;
+      line-height: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+    button[mat-raised-button] {
+      height: 60px;
+      width: 90%;
+    }
+  }
+}
+
+.cards-container {
+  display: grid;
+  grid-gap: 2em;
+  grid-template-columns: repeat(auto-fill, minmax(267px, 1fr));
+  margin: -3rem 0 5rem;
+  position: relative;
+
+  .card {
+    display: grid;
+    background: var(--abled-spec-general-background-a);
+    padding: 0 1.6rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 175px;
+    border-radius: 4px;
+    box-shadow: var(--abled-box-shadow);
+    margin: 0;
+
+    p {
+      text-align: center;
+      color: var(--abled-primary);
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 0;
+      align-content: center;
+    }
+
+    span {
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+      font-size: 2rem;
+      line-height: 3.5rem;
+      color: var(--abled-primary);
+      font-weight: 700;
+    }
+  }
+}
+
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  margin-bottom: 5rem;
+
+  .step {
+    display: grid;
+    grid-template-columns: 580px 493px;
+    grid-gap: 3rem;
+
+    .step-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.8rem;
+
+      .step-left-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--abled-primary);
+      }
+      .step-left-text {
+        font-size: 1rem;
+        line-height: 1.5rem;
+
+        ul {
+          margin-left: 2ch;
+        }
+      }
+      button[mat-raised-button] {
+        height: 60px;
+        width: 60%;
+      }
+    }
+
+    .step-right {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+footer {
+  background: url("https://www.nettimokki.com/build/images/become-renter-bottom-hero.54e48730.jpg") no-repeat 0 0;
+
+  .footer-container {
+    display: grid;
+    grid-template-columns: 580px 493px;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 413px;
+
+    .footer-left {
+      .footer-left-text {
+        color: #fff;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+      }
+
+      button[mat-raised-button] {
+        height: 60px;
+        width: 60%;
+      }
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      .footer-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 400px;
+        font-size: 1rem;
+        background: var(--abled-spec-general-background-a);
+        border-radius: 8px;
+        box-shadow: var(--abled-box-shadow);
+        padding: 1rem 1rem 1rem 56px;
+        background: var(--abled-spec-general-background-a)
+          url("https://www.nettimokki.com/build/images/thumb-icon.385e2861.svg") no-repeat 17px 17px;
+
+        &:last-child {
+          margin: 50px 0 0 90px;
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

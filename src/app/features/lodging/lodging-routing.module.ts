@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LodgingComponent } from './lodging.component';
+import { LodgingComponent } from './pages/lodging/lodging.component';
+import { CtaLodgingComponent } from './pages/cta-lodging/cta-lodging.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'lodging', pathMatch: 'full' },
-  { path: 'lodging', component: LodgingComponent, children: [] },
+  {
+    path: '',
+    pathMatch: 'prefix',
+    children: [
+      { path: '', component: CtaLodgingComponent },
+      { path: 'lod/:id', component: LodgingComponent },
+    ],
+  },
 ];
 
 @NgModule({

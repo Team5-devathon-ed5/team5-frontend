@@ -1,0 +1,49 @@
+header {
+  width: 100%;
+  height: 64px;
+  background: #344054;
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 95%;
+    height: 100%;
+    margin: 0 auto;
+
+    .logo {
+      color: var(--abled-spec-general-background-a);
+
+      h1 {
+        margin: 0;
+      }
+    }
+
+    .menu {
+      ul {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        gap: 2rem;
+
+        li {
+          a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+              color: #ccc;
+            }
+          }
+          button[mat-raised-button] {
+            background: #fff;
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+}

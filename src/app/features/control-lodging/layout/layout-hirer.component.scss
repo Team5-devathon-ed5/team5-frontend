@@ -1,0 +1,44 @@
+.container {
+  width: 100%;
+  height: calc(100% - 64px);
+}
+
+.sidenav-content {
+  display: flex;
+  height: 100%;
+}
+
+.sidenav {
+  min-width: 280px;
+  background: #344054;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      width: 100%;
+      height: 60px;
+      border-bottom: 1px solid #475467;
+
+      &:first-child {
+        border-top: 1px solid #475467;
+      }
+
+      a {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        text-align: center;
+        color: var(--abled-spec-general-background-a);
+        padding: 0 20px;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.active {
+  background: #1d2939;
+}

@@ -14,6 +14,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./layout/layout.module').then(m => m.LayoutModule),
   },
+  {
+    path: 'control-lodging',
+    loadChildren: () =>
+      import('./features/control-lodging/control-lodging.module').then(
+        m => m.ControlLodgingModule
+      ),
+  },
   // TODO: Change to not found page
   {
     path: '**',

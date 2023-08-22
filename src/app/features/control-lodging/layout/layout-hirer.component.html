@@ -1,0 +1,25 @@
+<app-header-control-lodging></app-header-control-lodging>
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side" opened>
+    <ul>
+      <li>
+        <a
+          [routerLink]="['/control-lodging/hirer/bookings']"
+          routerLinkActive="active"
+          >Reservas
+        </a>
+      </li>
+      <li>
+        <a
+          [routerLink]="['/control-lodging/hirer/rooms']"
+          routerLinkActive="active"
+          >Habitaciones
+        </a>
+      </li>
+    </ul>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

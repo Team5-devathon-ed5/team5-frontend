@@ -77,29 +77,25 @@ export class AuthService {
   }
 
   forgotPassword(email: string) {
-    return this.http
-      .post(`/api/v1/forgot-password`, {
-        email,
-      })
-      .subscribe({
-        next: () => {
-          this.router.navigate(['/auth/login']);
-        },
-        error: err => {
-          this._snackBar.open('No se pudo completar el envio', 'Cerrar', {
+    return this.http.post(`/api/v1/password/forgot`, email).subscribe({
+      next: () => {
+        this.router.navigate(['/auth/login']);
+      },
+      error: err => {
+        this._snackBar.open('No se pudo completar el envio', 'Cerrar', {
+          duration: 2000,
+        });
+        return err;
+      },
+      complete: () => {
+        this._snackBar.open(
+          'Se le ha enviado un e-mail con más detalles',
+          'Cerrar',
+          {
             duration: 2000,
-          });
-          return err;
-        },
-        complete: () => {
-          this._snackBar.open(
-            'Se le ha enviado un e-mail con más detalles',
-            'Cerrar',
-            {
-              duration: 2000,
-            }
-          );
-        },
-      });
+          }
+        );
+      },
+    });
   }
 }

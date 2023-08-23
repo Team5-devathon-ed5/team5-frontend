@@ -5,8 +5,8 @@ import { ControlLodgingRoutingModule } from './control-lodging-routing.module';
 import { RoomsAdminHubComponent } from './pages/rooms-admin-hub/rooms-admin-hub.component';
 import { BookingsComponent } from './pages/bookings/bookings.component';
 import { RoomRegisterComponent } from './pages/room-register/room-register.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularMaterialModule } from 'src/app/shared/modules/angular-material/angular-material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,8 +17,8 @@ import { AngularMaterialModule } from 'src/app/shared/modules/angular-material/a
   imports: [
     CommonModule,
     ControlLodgingRoutingModule,
-    SharedModule,
     AngularMaterialModule,
+    ReactiveFormsModule,
   ],
 })
 export class ControlLodgingModule {}

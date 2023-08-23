@@ -10,10 +10,11 @@ const routes: Routes = [
     path: '',
     component: LayoutHirerComponent,
     children: [
-      { path: '', redirectTo: 'room-register', pathMatch: 'full' },
+      { path: '', redirectTo: 'room-form', pathMatch: 'full' },
       { path: 'rooms', component: RoomsAdminHubComponent },
       { path: 'bookings', component: BookingsComponent },
-      { path: 'room-register', component: RoomRegisterComponent },
+      { path: 'room-form', component: RoomRegisterComponent },
+      { path: 'room-form/:id', component: RoomRegisterComponent },
       { path: '**', redirectTo: 'rooms' },
     ],
   },

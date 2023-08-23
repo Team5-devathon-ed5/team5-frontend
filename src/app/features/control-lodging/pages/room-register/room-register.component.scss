@@ -1,0 +1,100 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+mat-accordion {
+  mat-expansion-panel {
+    border-color: #eaecf0;
+    width: 100%;
+
+    .half-input {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 48%));
+      justify-content: space-between;
+    }
+
+    .price-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #98a2b3;
+      padding: 1rem 1rem 0 1rem;
+      border-radius: 8px;
+
+      .price-label {
+        margin-bottom: 23px;
+      }
+    }
+  }
+}
+
+fieldset {
+  border: none;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input::file-selector-button {
+  font-weight: bold;
+  color: var(--abled-spec-general-background-a);
+  background: var(--abled-primary);
+  height: 50px;
+  font-size: 1rem;
+  padding: 0.5em 1rem;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: calc(100vw - 250px);
+
+  .header-form {
+    h2 {
+      margin-left: 2rem;
+    }
+  }
+
+  form {
+    padding: 2rem;
+    max-width: 700px;
+
+    .btns-container {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-top: 2rem;
+
+      button {
+        height: 60px;
+        padding: 0.5rem 1rem;
+      }
+    }
+  }
+}
+
+button[mat-stroked-button] {
+  height: 50px;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+}
+
+mat-panel-title {
+  font-weight: 500;
+}
+
+p {
+  color: var(--abled-primary);
+  font-weight: 500;
+}

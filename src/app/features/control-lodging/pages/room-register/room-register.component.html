@@ -1,1 +1,240 @@
-<p>room-register works!</p>
+<div class="form-container">
+  <div class="header-form">
+    <h2>Nuevo anuncio gratis</h2>
+    <mat-divider></mat-divider>
+  </div>
+
+  <form [formGroup]="formRoom" (ngSubmit)="sendRoom()">
+    <mat-accordion>
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+        [expanded]="step === 0"
+        hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Información General </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <fieldset>
+          <p>Nombre de la habitación</p>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              type="text"
+              formControlName="name"
+              placeholder="Nombre"
+              required />
+          </mat-form-field>
+        </fieldset>
+        <div class="half-input">
+          <fieldset>
+            <p>Categoría</p>
+            <mat-form-field appearance="outline">
+              <mat-select
+                formControlName="category"
+                placeholder="Seleccionar una opción">
+                <mat-option value="cottage">Cabaña</mat-option>
+                <mat-option value="hotel">Hotel</mat-option>
+                <mat-option value="lodging">Alojamiento</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </fieldset>
+          <fieldset>
+            <p>Capacidad</p>
+            <mat-form-field appearance="outline">
+              <input
+                type="text"
+                matInput
+                formControlName="guestCapacity"
+                placeholder="Ingresa un número" />
+            </mat-form-field>
+          </fieldset>
+        </div>
+        <fieldset>
+          <p>Descripción</p>
+          <mat-form-field appearance="outline">
+            <textarea
+              matInput
+              formControlName="description"
+              placeholder="Añade una descripción"
+              required></textarea>
+          </mat-form-field>
+        </fieldset>
+
+        <fieldset>
+          <p>Dirección</p>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              formControlName="address"
+              placeholder="Dirección"
+              required />
+          </mat-form-field>
+        </fieldset>
+
+        <div class="half-input">
+          <fieldset>
+            <p>Ciudad</p>
+            <mat-form-field appearance="outline">
+              <input type="text" matInput formControlName="city" />
+            </mat-form-field>
+          </fieldset>
+          <fieldset>
+            <p>País</p>
+            <mat-form-field appearance="outline">
+              <input type="text" matInput formControlName="country" />
+            </mat-form-field>
+          </fieldset>
+        </div>
+
+        <mat-action-row>
+          <button
+            type="button"
+            mat-stroked-button
+            color="primary"
+            (click)="nextStep()">
+            Siguiente
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel
+        [expanded]="step === 1"
+        (opened)="setStep(1)"
+        hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Tarifario y disponibilidad </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="half-input">
+          <fieldset>
+            <p>Hora de entrada</p>
+            <mat-form-field appearance="outline">
+              <mat-select formControlName="checkInHour">
+                <mat-option>Seleccionar hora</mat-option>
+                <mat-option *ngFor="let hour of horarios" [value]="hour">
+                  {{ hour }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </fieldset>
+
+          <fieldset>
+            <p>Hora de salida</p>
+            <mat-form-field appearance="outline">
+              <mat-select formControlName="checkOutHour">
+                <mat-option>Seleccionar hora</mat-option>
+                <mat-option *ngFor="let hour of horarios" [value]="hour">
+                  {{ hour }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </fieldset>
+        </div>
+
+        <div class="price-container">
+          <div class="price-label">
+            <p>Precio por noche</p>
+            <small>Valor por defecto</small>
+          </div>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              type="text"
+              formControlName="priceNight"
+              placeholder="70"
+              required />
+          </mat-form-field>
+        </div>
+
+        <mat-action-row>
+          <button
+            type="button"
+            mat-stroked-button
+            color="warn"
+            (click)="prevStep()">
+            Atrás
+          </button>
+          <button
+            type="button"
+            mat-stroked-button
+            color="primary"
+            (click)="nextStep()">
+            Siguiente
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel
+        [expanded]="step === 2"
+        (opened)="setStep(2)"
+        hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Calendario de reservas y contacto </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <fieldset>
+          <p>Confirmar reservas automáticamente</p>
+          <mat-radio-group>
+            <mat-radio-button value="1">No</mat-radio-button>
+            <mat-radio-button value="2">Sí</mat-radio-button>
+          </mat-radio-group>
+        </fieldset>
+
+        <mat-action-row>
+          <button
+            type="button"
+            mat-stroked-button
+            color="warn"
+            (click)="prevStep()">
+            Atrás
+          </button>
+          <button
+            type="button"
+            mat-stroked-button
+            color="primary"
+            (click)="nextStep()">
+            Siguiente
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel
+        [expanded]="step === 3"
+        (opened)="setStep(3)"
+        hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Fotos </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <fieldset>
+          <label for="avatar">Seleccionar imágenes:</label>
+          <input
+            type="file"
+            name="images"
+            accept="image/png, image/jpeg, image/webp"
+            formControlName="images"
+            multiple />
+        </fieldset>
+
+        <mat-action-row>
+          <button
+            type="button"
+            mat-stroked-button
+            color="warn"
+            (click)="prevStep()">
+            Atrás
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <div class="btns-container">
+      <button type="submit" mat-raised-button color="primary">Publicar</button>
+      <button type="button" mat-raised-button color="secondary">
+        Cancelar
+      </button>
+      <button type="button" mat-raised-button color="warn">
+        Eliminar habitación
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,1 +1,45 @@
-<p>rooms-admin-hub works!</p>
+<div class="room-list-container">
+  <div class="room-list">
+    <div class="title-container">
+      <h2>Habitaciones</h2>
+      <small>Todas tus habitaciones en un solo lugar</small>
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/control/hirer/room-form']">
+      Añadir
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="room-list">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Capacidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let room of rooms">
+          <td>{{ room.name }}</td>
+          <td>{{ room.description }}</td>
+          <td>{{ room.guestCapacity }}</td>
+          <td>
+            <button
+              mat-icon-button
+              color="primary"
+              [routerLink]="['/control-lodging/hirer/room-form', room.id]">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteRoom(room.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

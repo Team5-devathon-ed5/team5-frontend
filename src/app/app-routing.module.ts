@@ -15,7 +15,7 @@ const routes: Routes = [
       import('./layout/layout.module').then(m => m.LayoutModule),
   },
   {
-    path: 'control-lodging',
+    path: 'control',
     loadChildren: () =>
       import('./features/control-lodging/control-lodging.module').then(
         m => m.ControlLodgingModule

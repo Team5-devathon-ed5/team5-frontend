@@ -3,18 +3,20 @@
   <mat-drawer #drawer class="sidenav" mode="side" opened>
     <ul>
       <li>
-        <a
-          [routerLink]="['/control-lodging/hirer/bookings']"
-          routerLinkActive="active"
+        <a [routerLink]="['/control/hirer/bookings']" routerLinkActive="active"
           >Reservas
         </a>
       </li>
       <li>
-        <a
-          [routerLink]="['/control-lodging/hirer/rooms']"
-          routerLinkActive="active"
+        <a [routerLink]="['/control/hirer/rooms']" routerLinkActive="active"
           >Habitaciones
         </a>
+      </li>
+      <li>
+        <a
+          >Informes &nbsp;
+          <span style="color: var(--abled-primary)">(Premium)</span></a
+        >
       </li>
     </ul>
   </mat-drawer>

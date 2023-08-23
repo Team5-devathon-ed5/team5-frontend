@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import {
   hasError,
 } from './../../../shared/helpers/forms.helper';
 import { AuthLogin } from '../models/auth.model';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +16,11 @@ import { AuthLogin } from '../models/auth.model';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  private service = inject(AuthService);
-  private router = inject(Router);
-  constructor() {
-    sessionStorage.clear();
-  }
+  constructor(
+    private service: AuthService,
+    private router: Router,
+    private _notification: NotificationService
+  ) {}
 
   hide = true;
 
@@ -44,13 +45,21 @@ export class LoginComponent {
     return hasError(this.f, input, validatorError);
   }
 
-  async login() {
+  login() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-
-      await this.service.login({ email, password } as AuthLogin).subscribe({
-        next: response => {
-          this.service.setTokenId(response);
+      this.service.login({ email, password } as AuthLogin).subscribe({
+        next: data => {
+          localStorage.setItem('token', data.jwTtoken);
+          this.router.navigate(['/abled']);
+        },
+        error: err => {
+          const message =
+            err.status === 400 ? 'Credenciales inválidas' : err.statusText;
+          throw Error(message);
+        },
+        complete: () => {
+          this._notification.showSuccess('Contraseña aceptada. Bienvenid@!');
         },
       });
     } else {

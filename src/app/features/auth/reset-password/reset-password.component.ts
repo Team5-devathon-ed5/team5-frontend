@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -15,12 +15,12 @@ import {
   styleUrls: ['../forgot-password/forgot-password.component.scss'],
 })
 export class ResetPasswordComponent {
-  private service = inject(AuthService);
   payload: string;
   hide = true;
   hideConfirmPassword = true;
 
   constructor(
+    private service: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private _notification: NotificationService

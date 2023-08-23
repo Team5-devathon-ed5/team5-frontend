@@ -49,7 +49,6 @@ export class RegisterComponent {
   }
 
   register() {
-    console.log(this.f);
     if (!this.f.valid) {
       return;
     }

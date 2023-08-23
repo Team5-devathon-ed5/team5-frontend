@@ -19,7 +19,6 @@ export class ForgotPasswordComponent {
   }
 
   forgotPassword() {
-    console.log(this.f);
     if (!this.f.valid) {
       return;
     }

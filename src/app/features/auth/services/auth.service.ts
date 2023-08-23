@@ -62,7 +62,7 @@ export class AuthService {
           this.router.navigate(['/abled']);
         }),
         catchError(error => {
-          if (error.status === 403) {
+          if (error.status === 400) {
             this._snackBar.open('Credenciales incorrectas', 'Cerrar', {
               duration: 2000,
             });
@@ -97,5 +97,14 @@ export class AuthService {
         );
       },
     });
+  }
+
+  resetPassword(payload: string, newPassword: string) {
+    return this.http.post<{ newPassword: string }>(
+      `/api/v1/password/reset/${payload}`,
+      {
+        newPassword,
+      }
+    );
   }
 }

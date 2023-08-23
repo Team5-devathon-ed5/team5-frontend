@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthLogin, AuthRegister, Token } from '../models/auth.model';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,33 +16,16 @@ export class AuthService {
   ) {}
   apiUrl = 'http://localhost:8080/';
 
-  register(inputdata: AuthRegister): Subscription {
+  register(inputdata: AuthRegister): Observable<Token> {
     const { password, email, name, lastName, country } = inputdata;
 
-    return this.http
-      .post<Token>(`/api/v1/register`, {
-        password,
-        email,
-        name,
-        last_name: lastName,
-        country,
-      })
-      .subscribe({
-        next: () => {
-          this.router.navigate(['/auth/login']);
-        },
-        error: err => {
-          this._snackBar.open('No se pudo completar el registro', 'Cerrar', {
-            duration: 2000,
-          });
-          return err;
-        },
-        complete: () => {
-          this._snackBar.open('Registro completado', 'Cerrar', {
-            duration: 2000,
-          });
-        },
-      });
+    return this.http.post<Token>(`/api/v1/register`, {
+      password,
+      email,
+      name,
+      last_name: lastName,
+      country,
+    });
   }
 
   login(authLogin: AuthLogin): Observable<Token> {

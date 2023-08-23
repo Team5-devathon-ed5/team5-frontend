@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -8,6 +8,7 @@ import {
   checkValidation,
   hasError,
 } from '../../../shared/helpers/forms.helper';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -15,11 +16,14 @@ import {
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  private service = inject(AuthService);
-  private router = inject(Router);
-
   hide = true;
   hideConfirmPassword = true;
+
+  constructor(
+    private service: AuthService,
+    private router: Router,
+    private _notification: NotificationService
+  ) {}
 
   registerForm: FormGroup = new FormGroup(
     {
@@ -52,6 +56,18 @@ export class RegisterComponent {
     if (!this.f.valid) {
       return;
     }
-    this.service.register(this.f.value as AuthRegister);
+    this.service.register(this.f.value as AuthRegister).subscribe({
+      next: () => {
+        this.router.navigate(['/auth/login']);
+      },
+      error: err => {
+        const message =
+          err.status === 400 ? 'El email ya está en uso' : err.statusText;
+        throw Error(message);
+      },
+      complete: () => {
+        this._notification.showSuccess('Registro completado');
+      },
+    });
   }
 }

@@ -5,15 +5,15 @@ import {
   User,
   UserProfile,
   setUserProfileForm,
+  userSubmit,
 } from 'src/app/features/profile/models/user.model';
-import { Role } from 'src/app/features/profile/models/role.enum';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   checkValidation,
   hasError,
   hasPatternError,
 } from 'src/app/shared/helpers/forms.helper';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,9 +21,9 @@ import {
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  private snackBar = inject(MatSnackBar);
   private router = inject(Router);
   private profileService = inject(ProfileService);
+  private _notification = inject(NotificationService);
   isUpdatingProfile = false;
 
   profileForm = new FormGroup({
@@ -45,9 +45,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.profileService.getCurrentUser().subscribe({
       next: (user: User) => {
-        console.group('Saliente');
-        console.log(user);
-        console.groupEnd();
         this.profileForm.patchValue(setUserProfileForm(user));
       },
     });
@@ -73,40 +70,22 @@ export class ProfileComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
-    this.setRole();
     const userProfile: UserProfile = this.form.value;
-    this.isUpdatingProfile = true;
-    console.group('Saliente');
-    console.log(userProfile);
-    console.groupEnd();
-    this.profileService.updateProfile(userProfile).subscribe({
+    const userForSubmit: User = userSubmit(userProfile);
+    this.profileService.updateProfile(userForSubmit).subscribe({
       next: () => {
-        this.snackBar.open('Perfil actualizado', 'Cerrar', {
-          duration: 2000,
-        });
+        this._notification.showSuccess('Perfil actualizado');
       },
       error: error => {
-        this.snackBar.open(
-          'Error al intentar actualizar, intente en unos minutos',
-          'Ok',
-          {
-            duration: 2000,
-          }
+        this._notification.showSuccess(
+          'Error al intentar actualizar, intente en unos minutos'
         );
         console.error(error);
       },
       complete: () => {
-        this.snackBar.open('Perfil actualizado', 'Cerrar', {
-          duration: 2000,
-        });
-        this.isUpdatingProfile = false;
+        this._notification.showSuccess('Perfil actualizado');
         this.router.navigate(['/']);
       },
     });
-  }
-
-  setRole() {
-    const setRole = this.form.get('role')?.value;
-    this.form.value.role = setRole ? Role.HIRER : Role.LODGER;
   }
 }

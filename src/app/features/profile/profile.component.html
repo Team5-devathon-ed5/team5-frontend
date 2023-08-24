@@ -54,7 +54,7 @@
             <mat-option>--</mat-option>
             <mat-option value="españa">España</mat-option>
             <mat-option value="finlandia">Finlandia</mat-option>
-            <mat-option value="perú">Perú</mat-option>
+            <mat-option value="peru">Perú</mat-option>
             <mat-option value="colombia">Colombia</mat-option>
             <mat-option value="bolivia">Bolivia</mat-option>
             <mat-option value="argentina">Argentina</mat-option>
@@ -126,7 +126,7 @@
             color="primary"
             type="submit"
             mat-raised-button
-            [disabled]="profileForm.invalid || isUpdatingProfile"
+            [disabled]="profileForm.invalid"
             (click)="ngSubmit()">
             Actualizar información
           </button>

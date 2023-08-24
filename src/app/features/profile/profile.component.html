@@ -1,0 +1,140 @@
+<section class="user-profile-container">
+  <article class="title-profile">
+    <h2>Mi Perfil</h2>
+    <p>
+      En esta página solo puede editar la información de su perfil de usuario.
+    </p>
+  </article>
+  <mat-divider></mat-divider>
+  <article class="body-profile">
+    <form class="form-profile" [formGroup]="profileForm">
+      <fieldset class="title-form">
+        <h3>Tipo de usuario: <span>Usuario privado</span></h3>
+      </fieldset>
+      <article class="body-form section-1">
+        <fieldset class="check-container">
+          <p>¿Quieres ser arrendador?</p>
+          <mat-slide-toggle formControlName="role">
+            &nbsp; Convertirme en arrendador
+          </mat-slide-toggle>
+        </fieldset>
+        <mat-form-field appearance="outline">
+          <mat-label>Correo electrónico</mat-label>
+          <input
+            matInput
+            type="email"
+            placeholder="example@example.com"
+            formControlName="email"
+            required />
+          <mat-error *ngIf="checkData('email')">{{
+            checkErrors('email', 'email')
+          }}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Nombre"
+            required
+            formControlName="name" />
+          <mat-error *ngIf="checkData('name')">{{
+            checkErrors('name', 'name')
+          }}</mat-error>
+        </mat-form-field>
+      </article>
+
+      <article class="body-form section-2">
+        <mat-form-field appearance="outline">
+          <mat-label>País</mat-label>
+          <mat-select
+            placeholder="Elige un país"
+            required
+            formControlName="country">
+            <mat-option>--</mat-option>
+            <mat-option value="españa">España</mat-option>
+            <mat-option value="finlandia">Finlandia</mat-option>
+            <mat-option value="peru">Perú</mat-option>
+            <mat-option value="colombia">Colombia</mat-option>
+            <mat-option value="bolivia">Bolivia</mat-option>
+            <mat-option value="argentina">Argentina</mat-option>
+          </mat-select>
+          <mat-error *ngIf="checkData('country')">
+            {{ checkErrors('country', 'country') }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Dirección</mat-label>
+          <input type="text" matInput formControlName="address" />
+          <mat-error *ngIf="checkData('address')">{{
+            checkErrors('address', 'address')
+          }}</mat-error>
+          <mat-hint>
+            La dirección no se muestra en la página de perfil público
+          </mat-hint>
+        </mat-form-field>
+        <div class="phone-container">
+          <div class="number-container">
+            <mat-form-field appearance="outline">
+              <mat-label>Código</mat-label>
+              <mat-select formControlName="phoneCode" placeholder="+51">
+                <mat-option>-----</mat-option>
+                <mat-option value="+34">+34</mat-option>
+                <mat-option value="+51">+51</mat-option>
+                <mat-option value="+1">+1</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Teléfono</mat-label>
+              <input
+                type="number"
+                matInput
+                placeholder="123456789"
+                formControlName="phoneNumber" />
+              <mat-error *ngIf="checkData('phoneNumber')">{{
+                checkPatternErros('phoneNumber')
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="share-container">
+            <mat-checkbox formControlName="phoneShare">
+              El número de teléfono puede mostrarse públicamente
+            </mat-checkbox>
+          </div>
+        </div>
+        <mat-form-field appearance="outline" class="last-field">
+          <mat-label>Sobre mi</mat-label>
+          <textarea
+            matInput
+            matTextareaAutosize
+            rows="5"
+            maxLength="2000"
+            placeholder="Información sobre mi"
+            formControlName="detail"></textarea>
+          <mat-hint>
+            Quedan
+            {{ 2000 - (profileForm.get('detail')?.value || '').length }}
+            caracteres (max. 2000)
+          </mat-hint>
+          <mat-error *ngIf="checkData('detail')">
+            {{ checkErrors('detail', 'detail') }}
+          </mat-error>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <fieldset class="buttons-form">
+          <button
+            color="primary"
+            type="submit"
+            mat-raised-button
+            [disabled]="profileForm.invalid"
+            (click)="ngSubmit()">
+            Actualizar información
+          </button>
+          <button mat-button color="warn" routerLink="/abled/home">
+            Cancelar cambios
+          </button>
+        </fieldset>
+      </article>
+    </form>
+  </article>
+</section>

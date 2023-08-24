@@ -51,6 +51,7 @@ export class LoginComponent {
       this.service.login({ email, password } as AuthLogin).subscribe({
         next: data => {
           localStorage.setItem('token', data.jwTtoken);
+          localStorage.setItem('userData', JSON.stringify(data));
           this.router.navigate(['/abled']);
         },
         error: err => {

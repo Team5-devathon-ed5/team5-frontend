@@ -1,0 +1,155 @@
+.user-profile-container {
+  width: 100%;
+  margin-bottom: 8rem;
+}
+
+.title-profile,
+.body-profile {
+  width: 100%;
+  max-width: 1216px;
+  margin: 0 auto;
+}
+
+.title-profile {
+  padding: 1rem 0;
+
+  h2 {
+    font-size: 2em;
+    color: var(--abled-text-color);
+    margin: 0;
+  }
+
+  p {
+    font-size: 1em;
+    color: var(--abled-text-color);
+  }
+}
+
+.body-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.title-form {
+  padding: 2rem 0 0 0;
+
+  h3 {
+    font-size: 1.5em;
+    color: var(--abled-text-color);
+    margin: 0;
+
+    span {
+      font-size: 1em;
+      color: var(--abled-text-color);
+      margin: 0;
+    }
+  }
+}
+
+.body-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+/* phone - container */
+
+.phone-container {
+  display: flex;
+  flex-direction: column;
+
+  .number-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+  }
+
+  .number-container mat-form-field {
+    width: 100%;
+  }
+  .share-container {
+    margin-bottom: 1.2rem;
+  }
+}
+
+/* phone - container */
+
+form.form-profile {
+  width: 40%;
+  max-width: 800px;
+}
+
+.check-container {
+  padding: 1.5em 0;
+
+  p {
+    font-size: 1em;
+    color: var(--abled-text-color);
+  }
+}
+
+.buttons-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+  margin-top: 1.5em;
+}
+
+fieldset {
+  border: none;
+  outline: none;
+}
+
+.section-2 mat-form-field.last-field {
+  margin-bottom: 5em;
+}
+
+.section-2 .buttons-form button[mat-button] {
+  text-decoration: underline;
+}
+
+.section-2 .buttons-form button[mat-raised-button] {
+  height: 60px;
+}
+
+/* -------------------BREAKPOINT------------------- */
+
+@media screen and (min-width: 1280px) {
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .user-profile-container {
+    padding: 0 2rem;
+  }
+
+  form.form-profile {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .user-profile-container {
+    padding: 0 1rem;
+    margin-bottom: 6rem;
+  }
+
+  .title-profile,
+  form.form-profile {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .section-2 mat-form-field.last-field {
+    margin-bottom: 2em;
+  }
+
+  mat-hint {
+    font-size: 0.9em;
+  }
+  .buttons-form {
+    justify-content: center;
+    align-items: center;
+  }
+}

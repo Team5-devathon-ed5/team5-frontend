@@ -11,6 +11,13 @@ const routes: Routes = [
       // TODO: Add routes
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('../features/profile/profile.module').then(
+            m => m.ProfileModule
+          ),
+      },
       { path: '**', redirectTo: 'home' },
     ],
   },

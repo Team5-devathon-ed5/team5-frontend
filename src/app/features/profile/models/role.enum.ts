@@ -1,0 +1,6 @@
+export enum Role {
+  LODGER = 'ROLE_LODGER',
+  HIRER = 'ROLE_HIRER',
+  LODGER_AND_HIRER = 'ROLE_LODGER_ADN_HIRER',
+  ADMIN = 'ROLE_ADMIN',
+}
